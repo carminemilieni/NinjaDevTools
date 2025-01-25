@@ -1,4 +1,5 @@
 import { NgxLoggerLevel } from 'ngx-logger';
+import { withDevtools } from '@angular-architects/ngrx-toolkit';
 
 export const environment = {
   languageOptions: {
@@ -9,4 +10,5 @@ export const environment = {
     level: NgxLoggerLevel.TRACE,
     enableSourceMaps: true,
   },
+  storeWithDevTools: withDevtools,
 };
