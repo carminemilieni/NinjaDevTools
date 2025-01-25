@@ -13,6 +13,10 @@
     "test": "ng test",
     "watch": "ng build --watch --configuration development"
   },
+  "engines": {
+    "node": ">=22.13.1",
+    "yarn": ">=1.22.22"
+  },
   "eslintConfig": {
     "extends": "./eslint.config.js"
   },
