@@ -1,5 +1,3 @@
-/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
-/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
 {
   "compileOnSave": false,
   "compilerOptions": {
@@ -18,27 +16,13 @@
     "target": "ES2022",
     "module": "ES2022",
     "paths": {
-      "@app/*": [
-        "src/app/*"
-      ],
-      "@env": [
-        "src/environments/environment"
-      ],
-      "@core/*": [
-        "src/app/@core/*"
-      ],
-      "@data/*": [
-        "src/app/@data/*"
-      ],
-      "@layouts/*": [
-        "src/app/@layouts/*"
-      ],
-      "@pages/*": [
-        "src/app/@pages/*"
-      ],
-      "@shared/*": [
-        "src/app/@shared/*"
-      ]
+      "@app/*": ["src/app/*"],
+      "@core/*": ["src/app/@core/*"],
+      "@data/*": ["src/app/@data/*"],
+      "@env": ["src/environments/environment"],
+      "@layouts/*": ["src/app/@layouts/*"],
+      "@pages/*": ["src/app/@pages/*"],
+      "@shared/*": ["src/app/@shared/*"]
     }
   },
   "angularCompilerOptions": {
