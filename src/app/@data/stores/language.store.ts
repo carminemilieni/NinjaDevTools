@@ -19,16 +19,16 @@ const initialState: IAppState = {
 };
 
 /**
- * AppStore
+ * LanguageStore
  *
  * @description
- * The AppStore is a signal store that manages
+ * The LanguageStore is a signal store that manages
  * the commons application state.
  *
  */
-export const AppStore = signalStore(
+export const LanguageStore = signalStore(
   { providedIn: 'root' },
-  withLogger('AppStore'),
+  withLogger('LanguageStore'),
   withState(initialState),
   withProps(() => ({
     languageOptions,

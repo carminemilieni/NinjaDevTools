@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
-import { AppStore } from '@data/stores';
+import { LanguageStore } from '@data/stores';
 import { JsonPipe } from '@angular/common';
 
 @Component({
@@ -10,5 +10,5 @@ import { JsonPipe } from '@angular/common';
   imports: [ButtonModule, JsonPipe],
 })
 export class MainLayout {
-  protected readonly store = inject(AppStore);
+  protected readonly store = inject(LanguageStore);
 }
