@@ -10,5 +10,8 @@ export const environment = {
     level: NgxLoggerLevel.ERROR,
     sourceMaps: false,
   },
-  storeWithDevTools: withDevToolsStub,
+  store: {
+    ...envDevelopment.store,
+    withDevTools: withDevToolsStub,
+  },
 };

@@ -1,5 +1,5 @@
 import { signalStore, withHooks, withMethods, withProps, withState } from '@ngrx/signals';
-import { withLogger, withTreeShakableDevTools } from '@shared/features';
+import { withLogger, withStoragePrefix, withTreeShakableDevTools } from '@shared/features';
 import { environment } from '@env';
 import { inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -7,17 +7,19 @@ import { updateState } from '@angular-architects/ngrx-toolkit';
 
 const { languageOptions } = environment;
 
-interface IAppState {
+interface ILanguageState {
   language: {
     currentLanguage: string | null;
   };
 }
 
-const initialState: IAppState = {
+const initialState: ILanguageState = {
   language: {
     currentLanguage: null,
   },
 };
+
+const storeKey = 'LanguageStore';
 
 /**
  * LanguageStore
@@ -29,8 +31,9 @@ const initialState: IAppState = {
  */
 export const LanguageStore = signalStore(
   { providedIn: 'root' },
-  withTreeShakableDevTools('LanguageStore'),
-  withLogger('LanguageStore'),
+  withTreeShakableDevTools(storeKey),
+  withLogger(storeKey),
+  withStoragePrefix(storeKey),
   withState(initialState),
   withProps(() => ({
     languageOptions,

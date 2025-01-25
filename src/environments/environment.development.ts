@@ -10,5 +10,8 @@ export const environment = {
     level: NgxLoggerLevel.TRACE,
     enableSourceMaps: true,
   },
-  storeWithDevTools: withDevtools,
+  store: {
+    storagePrefix: 'NinjaDevTools',
+    withDevTools: withDevtools,
+  },
 };
