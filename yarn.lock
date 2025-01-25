@@ -6329,6 +6329,14 @@ neo-async@^2.6.2:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
+ngx-logger@^5.0.12:
+  version "5.0.12"
+  resolved "https://registry.yarnpkg.com/ngx-logger/-/ngx-logger-5.0.12.tgz#387feec5e4e951b3c44789eab6e0c30df255371c"
+  integrity sha512-4kTtPvxQoV2ka6pigtvkbtaLKpMYWqZm7Slu0YQVcwzBKoVR2K+oLmMVcA50S6kCxkZXq7iKcrXUKR2vhMXPqQ==
+  dependencies:
+    tslib "^2.3.0"
+    vlq "^1.0.0"
+
 ngxtension@4.2.1:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/ngxtension/-/ngxtension-4.2.1.tgz#70277051cceae9f652bb685c2e1d577a22ddf5ef"
@@ -8364,6 +8372,11 @@ vite@6.0.7:
     rollup "^4.23.0"
   optionalDependencies:
     fsevents "~2.3.3"
+
+vlq@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/vlq/-/vlq-1.0.1.tgz#c003f6e7c0b4c1edd623fd6ee50bbc0d6a1de468"
+  integrity sha512-gQpnTgkubC6hQgdIcRdYGDSDc+SaujOdyesZQMv6JlfQee/9Mp0Qhnys6WxDWvQnL5WZdT7o2Ul187aSt0Rq+w==
 
 void-elements@^2.0.0:
   version "2.0.1"

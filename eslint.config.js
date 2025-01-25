@@ -42,6 +42,12 @@ module.exports = [
           style: 'kebab-case',
         },
       ],
+      '@angular-eslint/component-class-suffix': [
+        'error',
+        {
+          suffixes: ['Component', 'Page', 'Tab', 'Layout'],
+        },
+      ],
       'import/order': 'off',
       '@typescript-eslint/no-explicit-any': ['off'],
       '@typescript-eslint/member-ordering': 0,
