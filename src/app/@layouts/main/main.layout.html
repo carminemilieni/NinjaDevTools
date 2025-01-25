@@ -1,0 +1,4 @@
+<p-button (click)="store.setLanguage('en')"> Set en language</p-button>
+<p-button (click)="store.setLanguage('it')"> Set it language</p-button>
+
+{{ store.language() | json }}
