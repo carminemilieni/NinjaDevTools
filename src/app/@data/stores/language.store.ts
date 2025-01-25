@@ -47,9 +47,9 @@ export const LanguageStore = signalStore(
       });
     },
   })),
-  withHooks(({ translateSrv, setLanguage, trace }) => ({
+  withHooks(({ translateSrv, setLanguage, debug }) => ({
     onInit() {
-      trace({
+      debug({
         currentLang: translateSrv.currentLang,
         defaultLang: translateSrv.defaultLang,
       });
