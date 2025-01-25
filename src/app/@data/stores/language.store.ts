@@ -25,8 +25,7 @@ const storeKey = 'LanguageStore';
  * LanguageStore
  *
  * @description
- * The LanguageStore is a signal store that manages
- * the commons application state.
+ * A store that manages the language of the application.
  *
  */
 export const LanguageStore = signalStore(

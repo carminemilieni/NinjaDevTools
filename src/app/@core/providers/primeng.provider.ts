@@ -8,7 +8,6 @@ export const PRIMENG_PROVIDER: EnvironmentProviders = providePrimeNG({
     preset: Aura,
     options: {
       prefix: 'p',
-      darkModeSelector: 'system',
       cssLayer: false,
     },
   },

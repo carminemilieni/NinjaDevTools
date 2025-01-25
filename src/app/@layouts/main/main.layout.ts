@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
-import { LanguageStore } from '@data/stores';
+import { EColorScheme, EMode, LanguageStore, ThemeStore } from '@data/stores';
 import { JsonPipe } from '@angular/common';
 
 @Component({
@@ -10,5 +10,9 @@ import { JsonPipe } from '@angular/common';
   imports: [ButtonModule, JsonPipe],
 })
 export class MainLayout {
-  protected readonly store = inject(LanguageStore);
+  protected readonly languageStore = inject(LanguageStore);
+  protected readonly themeStore = inject(ThemeStore);
+  protected readonly ThemeMode = EMode;
+  protected readonly ThemeColorScheme = EColorScheme;
+  protected readonly EColorScheme = EColorScheme;
 }
