@@ -1,1 +1,3 @@
+yarn sort:i18n
+yarn sort:package
 yarn lint:fix
