@@ -57,7 +57,7 @@
             ],
             "scripts": [],
             "styles": [
-              "src/styles.scss"
+              "src/styles.css"
             ],
             "tsConfig": "tsconfig.app.json"
           }
@@ -95,14 +95,14 @@
                 "input": "public"
               }
             ],
-            "inlineStyleLanguage": "scss",
+            "inlineStyleLanguage": "css",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
             ],
             "scripts": [],
             "styles": [
-              "src/styles.scss"
+              "src/styles.css"
             ],
             "tsConfig": "tsconfig.spec.json"
           }
@@ -113,7 +113,7 @@
       "root": "",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "css"
         }
       },
       "sourceRoot": "src"
