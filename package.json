@@ -2,10 +2,16 @@
   "name": "ninja-dev-tools",
   "version": "0.0.0",
   "private": true,
+  "repository": "git@github.com:carminemilieni/NinjaDevTools.git",
+  "license": "MIT",
+  "author": "Carmine Milieni - NinjaCoding <carmine.milieni@gmail.com>",
+  "main": "index.js",
   "scripts": {
     "build": "ng build",
     "lint": "ng lint",
     "lint:fix": "ng lint --fix",
+    "lint:style": "stylelint '**/*.css'",
+    "lint:style:fix": "stylelint '**/*.css' --fix",
     "ng": "ng",
     "sort:i18n": "jsonsort public/i18n --silent",
     "sort:package": "jsonsort package.json --silent",
@@ -15,6 +21,9 @@
   },
   "eslintConfig": {
     "extends": "./eslint.config.js"
+  },
+  "stylelint": {
+    "extends": "./stylelint.config.js"
   },
   "dependencies": {
     "@angular-architects/ngrx-toolkit": "^19.0.2",
@@ -38,6 +47,8 @@
     "postcss": "^8.5.1",
     "primeng": "^19.0.5",
     "rxjs": "~7.8.0",
+    "stylelint": "^16.14.0",
+    "stylelint-config-standard-scss": "^14.0.0",
     "tailwindcss": "^4.0.0",
     "tailwindcss-primeui": "^0.4.0",
     "tslib": "^2.3.0",
