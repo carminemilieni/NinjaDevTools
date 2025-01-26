@@ -10,25 +10,23 @@ export enum EColorScheme {
 }
 
 export enum EMode {
-  Auto = 'system',
+  Auto = 'auto',
   Manual = 'manual',
 }
 
 interface IThemeState {
-  defaultColorScheme: EColorScheme;
+  systemColorScheme: EColorScheme;
   preferredColorScheme: EColorScheme;
   mode: EMode;
 }
 
 const initialState: IThemeState = {
-  defaultColorScheme: EColorScheme.Dark,
+  systemColorScheme: EColorScheme.Dark,
   preferredColorScheme: EColorScheme.Dark,
   mode: EMode.Auto,
 };
 
 const storeKey = 'ThemeStore';
-
-const darkModeCSSSelector = '.dark-mode';
 
 /**
  * ThemeStore
@@ -47,6 +45,11 @@ export const ThemeStore = signalStore(
     primeNg: inject(PrimeNG),
   })),
   withMethods((store) => ({
+    setSystemColorScheme(systemColorScheme: EColorScheme) {
+      updateState(store, 'setSystemColorScheme', {
+        systemColorScheme,
+      });
+    },
     setPreferredColorScheme(preferredColorScheme: EColorScheme) {
       updateState(store, 'setPreferredColorScheme', {
         preferredColorScheme,
@@ -59,50 +62,94 @@ export const ThemeStore = signalStore(
     },
   })),
 
-  withHooks(({ preferredColorScheme, mode, primeNg, debug }) => ({
+  withHooks(({ preferredColorScheme, systemColorScheme, mode, setSystemColorScheme, trace }) => ({
     onInit() {
-      onChangeModeEffect(mode, primeNg, debug);
-      onChangePreferredColorSchemeEffect(preferredColorScheme, debug);
+      listenToSystemColorSchemeChanges(setSystemColorScheme, trace);
+      onChangeModeOrPreferredColorOrSystemColorEffect(mode, preferredColorScheme, systemColorScheme, trace);
     },
   }))
 );
 
-const onChangePreferredColorSchemeEffect = (
-  preferredColorScheme: Signal<EColorScheme>,
-  debug: (message?: any, ...additional: any[]) => void
-) =>
-  effect(() => {
-    const colorScheme = preferredColorScheme();
-    const element = document.querySelector('html');
-    if (element) {
-      if (colorScheme === EColorScheme.Dark) {
-        element.classList.add('dark-mode');
-        element.classList.remove('light-mode');
-      } else {
-        element.classList.add('light-mode');
-        element.classList.remove('dark-mode');
-      }
-    }
-    debug('onChangePreferredColorSchemeEffect', {
-      colorScheme,
-    });
-  });
-
-const onChangeModeEffect = (
+/**
+ * onChangeModeOrPreferredColorOrSystemColorEffect
+ *
+ * @description
+ * Listens to changes in the mode, preferred color scheme, and system color scheme of the application.
+ * If the mode is set to auto, the color scheme is set to the system color scheme,
+ * otherwise, the color scheme is set to the preferred color scheme.
+ *
+ * @param modeS The mode signal.
+ * @param preferredColorSchemeS The preferred color scheme signal.
+ * @param systemColorSchemeS The system color scheme signal.
+ * @param log The logger function.
+ */
+const onChangeModeOrPreferredColorOrSystemColorEffect = (
   modeS: Signal<EMode>,
-  primeNg: PrimeNG,
-  debug: (message?: any, ...additional: any[]) => void
+  preferredColorSchemeS: Signal<EColorScheme>,
+  systemColorSchemeS: Signal<EColorScheme>,
+  log: (message?: any, ...additional: any[]) => void
 ) =>
   effect(() => {
     const mode = modeS();
-    primeNg.theme.update((state) => ({
-      ...state,
-      options: {
-        ...state.options,
-        darkModeSelector: mode === EMode.Auto ? EMode.Auto : darkModeCSSSelector,
-      },
-    }));
-    debug('onChangeModeEffect', {
+    const preferredColorScheme = preferredColorSchemeS();
+    const systemColorScheme = systemColorSchemeS();
+
+    const element = document.querySelector('html');
+    if (!element) return;
+
+    if (mode === EMode.Auto) {
+      if (systemColorScheme === EColorScheme.Dark) {
+        element.classList.add(EColorScheme.Dark);
+        element.classList.remove(EColorScheme.Light);
+      } else {
+        element.classList.add(EColorScheme.Light);
+        element.classList.remove(EColorScheme.Dark);
+      }
+    } else {
+      if (preferredColorScheme === EColorScheme.Dark) {
+        element.classList.add(EColorScheme.Dark);
+        element.classList.remove(EColorScheme.Light);
+      } else {
+        element.classList.add(EColorScheme.Light);
+        element.classList.remove(EColorScheme.Dark);
+      }
+    }
+
+    log('onChangeModeEffect', {
       mode,
+      preferredColorScheme,
+      systemColorScheme,
     });
   });
+
+/**
+ * listenToSystemColorSchemeChanges
+ *
+ * @description
+ * Listens to system color scheme changes and calls the callable function.
+ *
+ * @param callableFn The function to call when the system color scheme changes.
+ * @param log The logger function.
+ */
+const listenToSystemColorSchemeChanges = (
+  callableFn: (colorScheme: EColorScheme) => void,
+  log: (message?: any, ...additional: any[]) => void
+) => {
+  const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  darkModeMediaQuery.addEventListener('change', (event) => {
+    const newColorScheme = event.matches ? EColorScheme.Dark : EColorScheme.Light;
+    log('listenToSystemColorSchemeChanges', {
+      newColorScheme,
+      event,
+      callableFn,
+    });
+    callableFn(newColorScheme);
+  });
+
+  const colorScheme = darkModeMediaQuery.matches ? EColorScheme.Dark : EColorScheme.Light;
+  log('listenToSystemColorSchemeChanges', {
+    colorScheme,
+    callableFn,
+  });
+  callableFn(colorScheme);
+};

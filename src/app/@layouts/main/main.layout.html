@@ -1,23 +1,51 @@
-<div>
-  <div>
-    <p-button (click)="languageStore.setLanguage('en')"> Set en language</p-button>
-    <p-button (click)="languageStore.setLanguage('it')"> Set it language</p-button>
+<div class="flex h-screen">
+  <!-- Sidebar -->
+  <div class="w-64 flex-shrink-0">
+    <div class="p-4">
+      <h1 class="text-2xl font-bold">Sidebar</h1>
+      <ul class="mt-4">
+        <li class="py-2"><a class="hover:bg-gray-700 p-2 block" href="#">Link 1</a></li>
+        <li class="py-2"><a class="hover:bg-gray-700 p-2 block" href="#">Link 2</a></li>
+        <li class="py-2"><a class="hover:bg-gray-700 p-2 block" href="#">Link 3</a></li>
+      </ul>
+    </div>
   </div>
-  <div>
-    {{ languageStore.language() | json }}
-  </div>
-</div>
+  <!-- Content -->
+  <div class="flex-1 p-4">
+    <div>
+      <div>
+        <p-button (click)="languageStore.setLanguage('en')"> Set en language</p-button>
+        <p-button (click)="languageStore.setLanguage('it')"> Set it language</p-button>
+      </div>
+      <div>
+        {{ languageStore.language() | json }}
+      </div>
+    </div>
 
-<div>
-  <div>
-    <p-button (click)="themeStore.setMode(ThemeMode.Auto)">{{ ThemeMode.Auto }}</p-button>
-    <p-button (click)="themeStore.setMode(ThemeMode.Manual)">{{ ThemeMode.Manual }}</p-button>
+    <div>
+      <div>
+        <p-button (click)="themeStore.setMode(ThemeMode.Auto)">{{ ThemeMode.Auto }}</p-button>
+        <p-button (click)="themeStore.setMode(ThemeMode.Manual)">{{ ThemeMode.Manual }}</p-button>
+      </div>
+      <div>
+        {{ themeStore.mode() | json }}
+      </div>
+    </div>
+    <div>
+      <p-button (click)="themeStore.setPreferredColorScheme(EColorScheme.Dark)">{{ EColorScheme.Dark }}</p-button>
+      <p-button (click)="themeStore.setPreferredColorScheme(EColorScheme.Light)">{{ EColorScheme.Light }}</p-button>
+    </div>
   </div>
-  <div>
-    {{ themeStore.mode() | json }}
+  <div class="bg-white dark:bg-gray-800 rounded-lg px-6 py-8 ring shadow-xl ring-gray-900/5">
+    <div>
+      <span class="inline-flex items-center justify-center rounded-md bg-indigo-500 p-2 shadow-lg"> </span>
+    </div>
+    <h3 class="text-gray-900 dark:text-white mt-5 text-base font-medium tracking-tight">Writes upside-down</h3>
+    <p class="text-gray-500 dark:text-gray-400 mt-2 text-sm">
+      The Zero Gravity Pen can be used to write in any orientation, including upside-down. It even works in outer space.
+    </p>
   </div>
 </div>
-<div>
-  <p-button (click)="themeStore.setPreferredColorScheme(EColorScheme.Dark)">{{ EColorScheme.Dark }}</p-button>
-  <p-button (click)="themeStore.setPreferredColorScheme(EColorScheme.Light)">{{ EColorScheme.Light }}</p-button>
-</div>
+<!--
+
+<div class="m-5">some content</div>-->

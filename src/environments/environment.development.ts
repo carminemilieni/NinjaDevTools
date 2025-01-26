@@ -14,4 +14,7 @@ export const environment = {
     storagePrefix: 'NinjaDevTools',
     withDevTools: withDevtools,
   },
+  theme: {
+    darkModeSelector: '.darkMode',
+  },
 };
