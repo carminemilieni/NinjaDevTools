@@ -1,0 +1,31 @@
+{
+  "components": {
+    "color-scheme-switch": {
+      "aria-label": "Cambia schema di colori"
+    },
+    "language-switch": {
+      "placeholder": "Seleziona lingua"
+    }
+  },
+  "stores": {
+    "language": {
+      "available": {
+        "en": {
+          "flag": "gb",
+          "label": "English"
+        },
+        "it": {
+          "flag": "it",
+          "label": "Italiano"
+        }
+      }
+    },
+    "theme": {
+      "tooltip": {
+        "autoMode": "Modalità automatica",
+        "darkMode": "Modalità scura",
+        "lightMode": "Modalità chiara"
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
-import { signalStore, withHooks, withMethods, withProps, withState } from '@ngrx/signals';
+import { signalStore, withComputed, withHooks, withMethods, withProps, withState } from '@ngrx/signals';
 import { withLogger, withStoragePrefix, withTreeShakableDevTools } from '@shared/features';
 import { environment } from '@env';
-import { inject } from '@angular/core';
+import { computed, effect, inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { updateState } from '@angular-architects/ngrx-toolkit';
 
@@ -37,6 +37,14 @@ export const LanguageStore = signalStore(
   withProps(() => ({
     languageOptions,
     translateSrv: inject(TranslateService),
+    availableOpts: languageOptions.available.map(
+      (code) =>
+        ({
+          label: `stores.language.available.${code}.label`,
+          value: code,
+          flag: `stores.language.available.${code}.flag`,
+        }) as ILanguageOpt
+    ),
   })),
   withMethods((store) => ({
     setLanguage(lang: string) {
@@ -47,13 +55,26 @@ export const LanguageStore = signalStore(
       });
     },
   })),
-  withHooks(({ translateSrv, setLanguage, debug }) => ({
+  withComputed(({ language, availableOpts }) => ({
+    currentOpt: computed(() => availableOpts.find((opt) => opt.value === language.currentLanguage())),
+  })),
+  withHooks(({ translateSrv, setLanguage, debug, language }) => ({
     onInit() {
       debug({
         currentLang: translateSrv.currentLang,
         defaultLang: translateSrv.defaultLang,
       });
-      setLanguage(translateSrv.currentLang || translateSrv.defaultLang);
+      setLanguage(language.currentLanguage() || translateSrv.currentLang || translateSrv.defaultLang);
+
+      effect(() => translateSrv.use(language.currentLanguage() ?? ''));
     },
   }))
 );
+
+export interface ILanguageOpt {
+  label: string;
+  value: string;
+  flag: string;
+}
+
+export type TLanguageOpts = ILanguageOpt[];

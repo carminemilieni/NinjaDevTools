@@ -1,0 +1,32 @@
+<div class="card flex justify-center">
+  <p-select
+    [options]="languageStore.availableOpts"
+    optionLabel="label"
+    [placeholder]="i18nPrefix + '.placeholder' | translate"
+    [formControl]="ctrl"
+    size="small"
+    class="w-auto"
+  >
+    <ng-template #selectedItem let-selectedOption>
+      <div class="flex items-center gap-2" *ngIf="selectedOption">
+        <ng-container *ngTemplateOutlet="flag; context: { $implicit: selectedOption }"></ng-container>
+        <div>{{ selectedOption.label | translate }}</div>
+      </div>
+    </ng-template>
+    <ng-template let-lang #item>
+      <div class="flex items-center gap-2">
+        <ng-container *ngTemplateOutlet="flag; context: { $implicit: lang }"></ng-container>
+        <div>{{ lang.label | translate }}</div>
+      </div>
+    </ng-template>
+  </p-select>
+</div>
+
+<ng-template #flag let-opt>
+  <img
+    [alt]="opt.value"
+    [ngSrc]="'https://flagcdn.com/16x12/' + (opt.flag | translate) + '.webp'"
+    width="16"
+    height="12"
+  />
+</ng-template>

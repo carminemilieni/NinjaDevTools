@@ -2,9 +2,24 @@
   "components": {
     "color-scheme-switch": {
       "aria-label": "Change color scheme"
+    },
+    "language-switch": {
+      "placeholder": "Select language"
     }
   },
   "stores": {
+    "language": {
+      "available": {
+        "en": {
+          "flag": "gb",
+          "label": "English"
+        },
+        "it": {
+          "flag": "it",
+          "label": "Italiano"
+        }
+      }
+    },
     "theme": {
       "tooltip": {
         "autoMode": "Auto mode",
