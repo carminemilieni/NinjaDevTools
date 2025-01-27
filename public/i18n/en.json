@@ -1,0 +1,16 @@
+{
+  "components": {
+    "color-scheme-switch": {
+      "aria-label": "Change color scheme"
+    }
+  },
+  "stores": {
+    "theme": {
+      "tooltip": {
+        "autoMode": "Auto mode",
+        "darkMode": "Dark mode",
+        "lightMode": "Light mode"
+      }
+    }
+  }
+}

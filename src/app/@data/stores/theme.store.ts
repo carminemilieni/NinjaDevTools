@@ -1,7 +1,7 @@
-import { signalStore, withHooks, withMethods, withProps, withState } from '@ngrx/signals';
+import { signalStore, withComputed, withHooks, withMethods, withProps, withState } from '@ngrx/signals';
 import { withLogger, withStoragePrefix, withTreeShakableDevTools } from '@shared/features';
 import { updateState } from '@angular-architects/ngrx-toolkit';
-import { effect, inject, Signal } from '@angular/core';
+import { computed, effect, inject, Signal } from '@angular/core';
 import { PrimeNG } from 'primeng/config';
 
 export enum EColorScheme {
@@ -12,6 +12,18 @@ export enum EColorScheme {
 export enum EMode {
   Auto = 'auto',
   Manual = 'manual',
+}
+
+export enum EColorSchemeIcon {
+  Light = 'pi pi-fw pi-sun',
+  Dark = 'pi pi-fw pi-moon',
+  Auto = 'pi pi-fw pi-sun ',
+}
+
+export enum EColorSchemeText {
+  Light = 'stores.theme.tooltip.lightMode',
+  Dark = 'stores.theme.tooltip.darkMode',
+  Auto = 'stores.theme.tooltip.autoMode',
 }
 
 interface IThemeState {
@@ -44,7 +56,7 @@ export const ThemeStore = signalStore(
   withProps(() => ({
     primeNg: inject(PrimeNG),
   })),
-  withMethods((store) => ({
+  withMethods(({ preferredColorScheme, ...store }) => ({
     setSystemColorScheme(systemColorScheme: EColorScheme) {
       updateState(store, 'setSystemColorScheme', {
         systemColorScheme,
@@ -60,8 +72,34 @@ export const ThemeStore = signalStore(
         mode,
       });
     },
+    setNextMode() {
+      const mode = store.mode();
+      if (mode === EMode.Auto) {
+        this.setPreferredColorScheme(EColorScheme.Dark);
+        this.setMode(EMode.Manual);
+      } else if (preferredColorScheme() === EColorScheme.Dark) {
+        this.setPreferredColorScheme(EColorScheme.Light);
+      } else {
+        this.setMode(EMode.Auto);
+      }
+    },
   })),
-
+  withComputed(({ mode, preferredColorScheme }) => ({
+    currentColorSchemeIcon: computed(() =>
+      mode() === EMode.Auto
+        ? EColorSchemeIcon.Auto
+        : preferredColorScheme() === EColorScheme.Dark
+          ? EColorSchemeIcon.Dark
+          : EColorSchemeIcon.Light
+    ),
+    currentColorSchemeTooltip: computed(() =>
+      mode() === EMode.Auto
+        ? EColorSchemeText.Auto
+        : preferredColorScheme() === EColorScheme.Dark
+          ? EColorSchemeText.Dark
+          : EColorSchemeText.Light
+    ),
+  })),
   withHooks(({ preferredColorScheme, systemColorScheme, mode, setSystemColorScheme, trace }) => ({
     onInit() {
       listenToSystemColorSchemeChanges(setSystemColorScheme, trace);

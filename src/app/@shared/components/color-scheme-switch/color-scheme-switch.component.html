@@ -1,0 +1,8 @@
+<p-button
+  [icon]="themeStore.currentColorSchemeIcon()"
+  [pTooltip]="themeStore.currentColorSchemeTooltip() | translate"
+  (onClick)="themeStore.setNextMode()"
+  [attr.aria-label]="prefixI18n + '.aria-label' | translate"
+  size="small"
+  outlined
+/>
