@@ -42,6 +42,7 @@
     "@ngx-translate/http-loader": "^16.0.1",
     "@primeng/themes": "^19.0.5",
     "@tailwindcss/postcss": "^4.0.0",
+    "@tailwindcss/typography": "^0.5.16",
     "ngx-logger": "^5.0.12",
     "ngxtension": "4.2.1",
     "postcss": "^8.5.1",

@@ -57,7 +57,7 @@
             ],
             "scripts": [],
             "styles": [
-              "node_modules/primeicons/primeicons.scss",
+              "node_modules/primeicons/primeicons.css",
               "src/styles.scss"
             ],
             "tsConfig": "tsconfig.app.json"

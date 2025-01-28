@@ -5,7 +5,7 @@ module.exports = {
     'scss/at-rule-no-unknown': [
       true,
       {
-        ignoreAtRules: ['tailwind', 'apply', 'variants', 'responsive', 'screen', 'custom-variant'],
+        ignoreAtRules: ['tailwind', 'apply', 'variants', 'responsive', 'screen', 'custom-variant', 'plugin'],
       },
     ],
     'no-descending-specificity': null,
