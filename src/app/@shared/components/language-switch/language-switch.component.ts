@@ -22,7 +22,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-language-switch',
   imports: [Select, NgIf, ReactiveFormsModule, NgOptimizedImage, NgTemplateOutlet, TranslatePipe],
   templateUrl: './language-switch.component.html',
-  styleUrl: './language-switch.component.css',
+  styleUrl: './language-switch.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LanguageSwitchComponent {

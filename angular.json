@@ -57,8 +57,8 @@
             ],
             "scripts": [],
             "styles": [
-              "node_modules/primeicons/primeicons.css",
-              "src/styles.css"
+              "node_modules/primeicons/primeicons.scss",
+              "src/styles.scss"
             ],
             "tsConfig": "tsconfig.app.json"
           }
@@ -96,14 +96,14 @@
                 "input": "public"
               }
             ],
-            "inlineStyleLanguage": "css",
+            "inlineStyleLanguage": "scss",
             "polyfills": [
               "zone.js",
               "zone.js/testing"
             ],
             "scripts": [],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "tsConfig": "tsconfig.spec.json"
           }
@@ -114,7 +114,7 @@
       "root": "",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "css"
+          "style": "scss"
         }
       },
       "sourceRoot": "src"

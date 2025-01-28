@@ -7,7 +7,7 @@ import { MenuItem } from 'primeng/api';
   selector: 'app-side-menu',
   imports: [RouterModule, Menu],
   templateUrl: './side-menu.layout.html',
-  styleUrl: './side-menu.layout.css',
+  styleUrl: './side-menu.layout.scss',
 })
 export class SideMenuLayout {
   protected readonly items: MenuItem[] = [

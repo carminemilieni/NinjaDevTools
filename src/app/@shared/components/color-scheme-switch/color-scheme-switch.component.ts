@@ -8,7 +8,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   selector: 'app-color-scheme-switch',
   imports: [Button, Tooltip, TranslatePipe],
   templateUrl: './color-scheme-switch.component.html',
-  styleUrl: './color-scheme-switch.component.css',
+  styleUrl: './color-scheme-switch.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ColorSchemeSwitchComponent {
