@@ -1,0 +1,62 @@
+{
+    "files.autoSave": "afterDelay",
+    "git.autofetch": true,
+    "explorer.confirmDelete": false,
+    "javascript.experimental.updateImportsOnPaste": true,
+    "typescript.experimental.updateImportsOnPaste": true,
+    "typescript.preferences.preferTypeOnlyAutoImports": false,
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode", 
+        "editor.formatOnSave": true
+    },
+    "[typescript]": {
+        //"editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+        "editor.defaultFormatter": "esbenp.prettier-vscode", 
+        "editor.formatOnSave": true
+    },
+    "[scss]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+        "editor.formatOnSave": true
+    },
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+    },
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "git.confirmSync": false,
+    "files.autoSaveDelay": 20000,
+    "files.autoSaveWhenNoErrors": true,
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        /**
+        * abilitare in base alle prestazione della macchina
+        */
+        //"source.fixAll.eslint": "explicit" 
+    },
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+    ],
+    "prettier.requireConfig": true,
+    "typescript.preferences.organizeImports": {
+        "sortImportsBy": "name", // Può essere "name" o "path"
+        "removeUnusedImports": true // Rimuove gli import non utilizzati
+    },
+    "diffEditor.ignoreTrimWhitespace": true,
+    "editor.foldingImportsByDefault": true,
+    "javascript.preferences.importModuleSpecifier": "relative",
+    "cSpell.language": "en,it",
+    "cSpell.words": [
+        "jsonsort"
+    ],
+    "css.fileExtensions": ["html", "css"],
+    "css.classNameCompletion.enabled": true,
+    "css.classNameCompletion.includeGlobPattern": "**/node_modules/**/*.css",
+}
