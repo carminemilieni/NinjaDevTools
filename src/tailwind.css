@@ -1,0 +1,5 @@
+@import "tailwindcss";
+@plugin "tailwindcss-primeui";
+@plugin "@tailwindcss/typography";
+@custom-variant dark (&:where(.darkMode, .darkMode * ));
+

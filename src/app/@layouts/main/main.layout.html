@@ -1,33 +1,15 @@
-<app-app-bar />
 <div class="flex h-screen">
   <!-- Sidebar -->
   <div class="w-auto flex-shrink-0">
     <app-side-menu />
   </div>
   <!-- Content -->
-  <div class="flex-1 p-4">
-    <div>
-      <div>
-        <p-button (click)="languageStore.setLanguage('en')"> Set en language</p-button>
-        <p-button (click)="languageStore.setLanguage('it')"> Set it language</p-button>
+  <div class="flex-1">
+    <div class="ps-5">
+      <app-app-bar />
+      <div class="p-3">
+        <router-outlet />
       </div>
-      <div>
-        {{ languageStore.language() | json }}
-      </div>
-    </div>
-
-    <div>
-      <div>
-        <p-button (click)="themeStore.setMode(ThemeMode.Auto)">{{ ThemeMode.Auto }}</p-button>
-        <p-button (click)="themeStore.setMode(ThemeMode.Manual)">{{ ThemeMode.Manual }}</p-button>
-      </div>
-      <div>
-        {{ themeStore.mode() | json }}
-      </div>
-    </div>
-    <div>
-      <p-button (click)="themeStore.setPreferredColorScheme(EColorScheme.Dark)">{{ EColorScheme.Dark }}</p-button>
-      <p-button (click)="themeStore.setPreferredColorScheme(EColorScheme.Light)">{{ EColorScheme.Light }}</p-button>
     </div>
   </div>
 </div>

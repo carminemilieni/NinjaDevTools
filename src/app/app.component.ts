@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { MainLayout } from '@layouts/main/main.layout';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [MainLayout],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
