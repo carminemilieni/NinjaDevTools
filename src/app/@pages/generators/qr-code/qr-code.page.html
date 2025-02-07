@@ -1,1 +1,6 @@
-<p>qr-code works!</p>
+<div class="grid grid-cols-3 gap-4">
+  <app-config-form />
+  @if (viewRendered()) {
+    <ngx-qrcode-styling [config]="config()" />
+  }
+</div>

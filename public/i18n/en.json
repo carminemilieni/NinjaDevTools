@@ -7,6 +7,16 @@
       "placeholder": "Select language"
     }
   },
+  "pages": {
+    "qr-code": {
+      "form": {
+        "heightLabel": "Height",
+        "lockProportionsOffLabel": "Unlocked proportions",
+        "lockProportionsOnLabel": "Locked proportions",
+        "widthLabel": "Width"
+      }
+    }
+  },
   "stores": {
     "language": {
       "available": {

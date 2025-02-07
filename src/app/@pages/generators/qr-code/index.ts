@@ -1,1 +1,1 @@
-export * from './qr-code.layout';
+export * from './qr-code.page';

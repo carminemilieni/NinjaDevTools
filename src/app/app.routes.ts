@@ -51,7 +51,7 @@ export const PRIMARY_NAVIGATION: TRoutesExtended = [
                 icon: 'pi pi-qrcode',
               },
             },
-            loadComponent: () => import('./@pages/generators/qr-code/qr-code.component').then((p) => p.QrCodeComponent),
+            loadComponent: () => import('./@pages/generators/qr-code/qr-code.page').then((p) => p.QrCodePage),
           },
         ],
       },

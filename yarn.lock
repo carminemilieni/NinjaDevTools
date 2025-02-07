@@ -6700,6 +6700,14 @@ ngx-logger@^5.0.12:
     tslib "^2.3.0"
     vlq "^1.0.0"
 
+ngx-qrcode-styling@^1.3.2:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/ngx-qrcode-styling/-/ngx-qrcode-styling-1.3.2.tgz#4bba313fc1ff883586ba005f0a1d7b6ae7e4ebd9"
+  integrity sha512-1cPtgApw2soaUVEEKbaQGClTvR5NRfPddsq4A8iuboe8ho0sqOUYAJkPR8vkGUouJtKzAi0jJ3J5V5D9VY6fdQ==
+  dependencies:
+    qr-code-styling "^1.6.0-rc.1"
+    tslib "^2.3.0"
+
 ngxtension@4.2.1:
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/ngxtension/-/ngxtension-4.2.1.tgz#70277051cceae9f652bb685c2e1d577a22ddf5ef"
@@ -7488,6 +7496,18 @@ qjobs@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/qjobs/-/qjobs-1.2.0.tgz#c45e9c61800bd087ef88d7e256423bdd49e5d071"
   integrity sha512-8YOJEHtxpySA3fFDyCRxA+UUV+fA+rTWnuWvylOK/NCjhY+b4ocCtmu8TtsWb+mYeU+GCHf/S66KZF/AsteKHg==
+
+qr-code-styling@^1.6.0-rc.1:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/qr-code-styling/-/qr-code-styling-1.9.1.tgz#1fc27ccb6d42051225f5f18ab9b99307ad62ef8b"
+  integrity sha512-T/VxQchuZkQwYhIcyyMUmtXHPeDT6lJBYHfqGD5CBDyIjswxS7JZKf443q+SXO1K/9SUswi6JpXEUQ5AoMCpyg==
+  dependencies:
+    qrcode-generator "^1.4.4"
+
+qrcode-generator@^1.4.4:
+  version "1.4.4"
+  resolved "https://registry.yarnpkg.com/qrcode-generator/-/qrcode-generator-1.4.4.tgz#63f771224854759329a99048806a53ed278740e7"
+  integrity sha512-HM7yY8O2ilqhmULxGMpcHSF1EhJJ9yBj8gvDEuZ6M+KGJ0YY2hKpnXvRD+hZPLrDVck3ExIGhmPtSdcjC+guuw==
 
 qs@6.13.0:
   version "6.13.0"

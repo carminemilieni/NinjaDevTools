@@ -7,6 +7,17 @@
       "placeholder": "Seleziona lingua"
     }
   },
+  "pages": {
+    "qr-code": {
+      "form": {
+        "dataLabel": "Dati",
+        "heightLabel": "Altezza",
+        "lockProportionsOffLabel": "Proporzioni libere",
+        "lockProportionsOnLabel": "Proporzioni fisse",
+        "widthLabel": "Larghezza"
+      }
+    }
+  },
   "stores": {
     "language": {
       "available": {

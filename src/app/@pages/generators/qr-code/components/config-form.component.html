@@ -1,0 +1,41 @@
+<form [formGroup]="formGroup">
+  <p-card>
+    <div class="grid gap-5">
+      <div class="grid grid-cols-2">
+        <div class="flex items-center">
+          <p-toggle-button
+            formControlName="lockProportions"
+            onIcon="pi pi-lock"
+            offIcon="pi pi-lock-open"
+            [onLabel]="i18nPrefix + '.lockProportionsOnLabel' | translate"
+            [offLabel]="i18nPrefix + '.lockProportionsOffLabel' | translate"
+          />
+        </div>
+        <div class="flex flex-col gap-4">
+          <p-floatlabel variant="on">
+            <p-input-number formControlName="width" inputId="width" id="width" showButtons inputStyleClass="w-full" />
+            <label for="width">
+              {{ i18nPrefix + '.widthLabel' | translate }}
+            </label>
+          </p-floatlabel>
+          <p-floatlabel variant="on">
+            <p-input-number
+              formControlName="height"
+              inputId="height"
+              id="height"
+              showButtons
+              inputStyleClass="w-full"
+            />
+            <label for="height">
+              {{ i18nPrefix + '.heightLabel' | translate }}
+            </label>
+          </p-floatlabel>
+        </div>
+      </div>
+      <p-floatlabel variant="on">
+        <input pInputText formControlName="data" id="data" class="w-full" />
+        <label for="data">{{ i18nPrefix + '.dataLabel' | translate }}</label>
+      </p-floatlabel>
+    </div>
+  </p-card>
+</form>
