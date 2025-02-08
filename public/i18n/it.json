@@ -11,9 +11,16 @@
     "qr-code": {
       "form": {
         "dataLabel": "Dati",
+        "dotOptions": {
+          "colorLabel": "Colore",
+          "title": "Impostazioni punti",
+          "typeLabel": "Tipo"
+        },
         "lockProportionsOffLabel": "Proporzioni libere",
         "lockProportionsOnLabel": "Proporzioni fisse",
         "marginLabel": "Margine",
+        "removeImageLabel": "Rimuovi immagine",
+        "uploadImageLabel": "Carica immagine",
         "widthLabel": "Larghezza"
       }
     }

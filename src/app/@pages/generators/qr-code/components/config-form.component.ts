@@ -1,16 +1,19 @@
-import { Component, inject, Signal } from '@angular/core';
+import { Component, computed, inject, Signal } from '@angular/core';
 import { Card } from 'primeng/card';
 import { ReactiveFormsModule } from '@angular/forms';
-import QrConfigForm from '@pages/generators/qr-code/forms/qr-config.form';
+import QrConfigForm from '@pages/generators/qr-code/qr-config.form';
 import { InputNumber } from 'primeng/inputnumber';
 import { FloatLabel } from 'primeng/floatlabel';
 import { tap } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { ToggleButton } from 'primeng/togglebutton';
 import { QrCodeStore } from '@pages/generators/qr-code/qr-code.store';
 import { TQrConfigFormGroup } from '@pages/generators/qr-code/qr-code.type';
 import { TranslatePipe } from '@ngx-translate/core';
 import { InputText } from 'primeng/inputtext';
+import { FileUpload, FileUploadHandlerEvent } from 'primeng/fileupload';
+import { NGXLogger } from 'ngx-logger';
+import { Button } from 'primeng/button';
+import { CommonFormComponent } from '@pages/generators/qr-code/components/common-form.component';
 
 /**
  * @description
@@ -18,7 +21,17 @@ import { InputText } from 'primeng/inputtext';
  */
 @Component({
   selector: 'app-config-form',
-  imports: [Card, ReactiveFormsModule, InputNumber, FloatLabel, ToggleButton, TranslatePipe, InputText],
+  imports: [
+    Card,
+    ReactiveFormsModule,
+    InputNumber,
+    FloatLabel,
+    TranslatePipe,
+    InputText,
+    FileUpload,
+    Button,
+    CommonFormComponent,
+  ],
   templateUrl: './config-form.component.html',
 })
 export class ConfigFormComponent {
@@ -27,6 +40,10 @@ export class ConfigFormComponent {
   readonly formGroup: TQrConfigFormGroup;
   readonly #updateStateEffect: Signal<any>;
   readonly #handlers: Signal<any>[] = [];
+  readonly #logger = inject(NGXLogger);
+
+  readonly viewUpload = computed(() => !this.#store.config().image);
+  readonly viewRemoveUpload = computed(() => !!this.#store.config().image);
 
   constructor() {
     const { form, handlers$ } = QrConfigForm(this.#store.config());
@@ -35,5 +52,17 @@ export class ConfigFormComponent {
     this.#updateStateEffect = toSignal(
       this.formGroup.valueChanges.pipe(tap((values) => this.#store.patchValues(values)))
     );
+  }
+
+  onBasicUploadAuto({ files }: FileUploadHandlerEvent) {
+    if (files.length) {
+      const file = files[0];
+      this.formGroup.controls.image.setValue(URL.createObjectURL(file));
+      this.#logger.trace('onBasicUploadAuto', file);
+    }
+  }
+
+  onRemoveImage() {
+    this.formGroup.controls.image.setValue(undefined);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject, signal } from '@angular/core';
 import { NgxQrcodeStylingModule } from 'ngx-qrcode-styling';
 import { QrCodeStore } from './qr-code.store';
 import { CommonModule } from '@angular/common';
@@ -13,6 +13,7 @@ import { ConfigFormComponent } from './components/config-form.component';
   imports: [NgxQrcodeStylingModule, CommonModule, ConfigFormComponent],
   templateUrl: './qr-code.page.html',
   providers: [QrCodeStore],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class QrCodePage {
   readonly #store = inject(QrCodeStore);

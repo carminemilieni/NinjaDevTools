@@ -1,6 +1,6 @@
 <div class="grid grid-cols-2 gap-4">
   <app-config-form />
   @if (viewRendered()) {
-    <ngx-qrcode-styling [config]="config() ?? {}" />
+    <ngx-qrcode-styling [config]="config()" />
   }
 </div>

@@ -1,5 +1,11 @@
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { IQrConfigFormControls, TQrConfigFormGroup, TQrConfigFormValues } from '@pages/generators/qr-code/qr-code.type';
+import {
+  IQrConfigFormControls,
+  IQRDotOptions,
+  IQrDotOptionsFormControls,
+  TQrConfigFormGroup,
+  TQrConfigFormValues,
+} from '@pages/generators/qr-code/qr-code.type';
 import { Observable, tap } from 'rxjs';
 
 /**
@@ -23,6 +29,9 @@ export default (
   handlers$: Observable<any>[];
 } => {
   const nonNullable = true;
+
+  const dotsOptions = dotOptionsFormGroupFactory(initialValues.dotsOptions ?? {});
+
   const form = new FormGroup<IQrConfigFormControls>({
     width: new FormControl(initialValues.width ?? 0, {
       nonNullable,
@@ -42,6 +51,7 @@ export default (
       nonNullable,
       validators: [Validators.required, Validators.min(0), Validators.max(100)],
     }),
+    dotsOptions,
   });
 
   const handlers$: Observable<any>[] = [];
@@ -67,3 +77,20 @@ const dimensionHandler$ = (
   widthCtrl: TQrConfigFormGroup['controls']['width'],
   heightCtrl: TQrConfigFormGroup['controls']['height']
 ): Observable<TQrConfigFormValues['width']> => widthCtrl.valueChanges.pipe(tap((width) => heightCtrl.setValue(width)));
+
+const dotOptionsFormGroupFactory = (initialValue: IQRDotOptions) => {
+  return new FormGroup<IQrDotOptionsFormControls>({
+    color: new FormControl(initialValue.color, {
+      nonNullable: true,
+    }),
+    type: new FormControl(initialValue.type, {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    gradient: new FormControl(initialValue.gradient, {
+      nonNullable: true,
+    }),
+  });
+};
+
+export const DOT_TYPES = ['dots', 'rounded', 'classy', 'classy-rounded', 'square', 'extra-rounded'];

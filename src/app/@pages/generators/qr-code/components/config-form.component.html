@@ -17,6 +17,31 @@
           {{ i18nPrefix + '.marginLabel' | translate }}
         </label>
       </p-floatlabel>
+      <div class="flex">
+        @if (viewUpload()) {
+          <p-fileupload
+            mode="basic"
+            chooseIcon="pi pi-upload"
+            accept="image/*"
+            maxFileSize="1000000"
+            customUpload
+            (uploadHandler)="onBasicUploadAuto($event)"
+            [auto]="true"
+            [chooseLabel]="i18nPrefix + '.uploadImageLabel' | translate"
+            class="w-auto"
+          />
+        }
+        @if (viewRemoveUpload()) {
+          <p-button
+            (click)="onRemoveImage()"
+            icon="pi pi-tash"
+            [label]="i18nPrefix + '.removeImageLabel' | translate"
+          />
+        }
+      </div>
     </div>
   </p-card>
+  <div class="mt-10">
+    <app-common-form [form]="formGroup.controls.dotsOptions" />
+  </div>
 </form>
