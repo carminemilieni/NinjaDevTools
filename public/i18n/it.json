@@ -11,11 +11,10 @@
     "qr-code": {
       "form": {
         "dataLabel": "Dati",
-        "heightLabel": "Altezza",
         "lockProportionsOffLabel": "Proporzioni libere",
         "lockProportionsOnLabel": "Proporzioni fisse",
-        "widthLabel": "Larghezza",
-        "marginLabel": "Margine"
+        "marginLabel": "Margine",
+        "widthLabel": "Larghezza"
       }
     }
   },

@@ -10,12 +10,11 @@
   "pages": {
     "qr-code": {
       "form": {
-        "heightLabel": "Height",
+        "dataLabel": "Data",
         "lockProportionsOffLabel": "Unlocked proportions",
         "lockProportionsOnLabel": "Locked proportions",
-        "widthLabel": "Width",
         "marginLabel": "Margin",
-        "dataLabel": "Data"
+        "widthLabel": "Width"
       }
     }
   },
