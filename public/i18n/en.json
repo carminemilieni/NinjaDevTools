@@ -13,7 +13,9 @@
         "heightLabel": "Height",
         "lockProportionsOffLabel": "Unlocked proportions",
         "lockProportionsOnLabel": "Locked proportions",
-        "widthLabel": "Width"
+        "widthLabel": "Width",
+        "marginLabel": "Margin",
+        "dataLabel": "Data"
       }
     }
   },

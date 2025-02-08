@@ -14,7 +14,8 @@
         "heightLabel": "Altezza",
         "lockProportionsOffLabel": "Proporzioni libere",
         "lockProportionsOnLabel": "Proporzioni fisse",
-        "widthLabel": "Larghezza"
+        "widthLabel": "Larghezza",
+        "marginLabel": "Margine"
       }
     }
   },

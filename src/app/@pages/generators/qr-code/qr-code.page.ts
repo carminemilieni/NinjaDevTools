@@ -17,7 +17,7 @@ import { ConfigFormComponent } from './components/config-form.component';
 export class QrCodePage {
   readonly #store = inject(QrCodeStore);
 
-  protected readonly config = this.#store.config;
+  protected readonly config = this.#store.renderConfig;
 
   /**
    * @description

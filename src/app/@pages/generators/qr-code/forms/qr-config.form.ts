@@ -1,11 +1,6 @@
-import { FormControl, FormGroup } from '@angular/forms';
-import {
-  IDimensionChangeEffect,
-  IQrConfigFormControls,
-  TQrConfigFormGroup,
-  TQrConfigFormValues,
-} from '@pages/generators/qr-code/qr-code.type';
-import { map, merge, Observable, pairwise, startWith, tap } from 'rxjs';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { IQrConfigFormControls, TQrConfigFormGroup, TQrConfigFormValues } from '@pages/generators/qr-code/qr-code.type';
+import { Observable, tap } from 'rxjs';
 
 /**
  * @description
@@ -31,27 +26,27 @@ export default (
   const form = new FormGroup<IQrConfigFormControls>({
     width: new FormControl(initialValues.width ?? 0, {
       nonNullable,
+      validators: [Validators.required, Validators.min(10), Validators.max(2000)],
     }),
     height: new FormControl(initialValues.height ?? 0, {
       nonNullable,
     }),
-    lockProportions: new FormControl(initialValues.lockProportions ?? true, {
-      nonNullable,
-    }),
     data: new FormControl(initialValues.data, {
       nonNullable,
+      validators: [Validators.required],
     }),
     image: new FormControl(initialValues.image, {
       nonNullable,
     }),
     margin: new FormControl(initialValues.margin, {
       nonNullable,
+      validators: [Validators.required, Validators.min(0), Validators.max(100)],
     }),
   });
 
   const handlers$: Observable<any>[] = [];
 
-  handlers$.push(dimensionHandler$(form.controls.lockProportions, form.controls.width, form.controls.height));
+  handlers$.push(dimensionHandler$(form.controls.width, form.controls.height));
 
   return {
     form,
@@ -61,58 +56,14 @@ export default (
 
 /**
  * @description
- * A handler for dimension changes.
- * If the lockProportions control is true,
- * the width and height are updated to maintain the same aspect ratio.
+ * Handles the width and height dimensions of the QR code.
+ * When the width changes, the height is set to the same value.
+ * The output is a square QR code.
  *
- * @param lockProportionsCtrl The control that locks the proportions.
- * @param widthCtrl The control for the width.
- * @param heightCtrl The control for the height.
- * @returns An observable that emits when the dimensions change.
+ * @param widthCtrl
+ * @param heightCtrl
  */
 const dimensionHandler$ = (
-  lockProportionsCtrl: TQrConfigFormGroup['controls']['lockProportions'],
   widthCtrl: TQrConfigFormGroup['controls']['width'],
   heightCtrl: TQrConfigFormGroup['controls']['height']
-): Observable<IDimensionChangeEffect> =>
-  merge(
-    heightCtrl.valueChanges.pipe(
-      startWith(heightCtrl.value),
-      pairwise(),
-      map(
-        (arr) =>
-          ({
-            h: {
-              prev: arr[0],
-              curr: arr[1],
-            },
-          }) as IDimensionChangeEffect
-      )
-    ),
-    widthCtrl.valueChanges.pipe(
-      startWith(widthCtrl.value),
-      pairwise(),
-      map(
-        (arr) =>
-          ({
-            w: {
-              prev: arr[0],
-              curr: arr[1],
-            },
-          }) as IDimensionChangeEffect
-      )
-    )
-  ).pipe(
-    tap((res) => {
-      const width = widthCtrl.value;
-      const height = heightCtrl.value;
-      if (lockProportionsCtrl.value) {
-        if (res.h) {
-          widthCtrl.setValue(width + (res.h.curr - res.h.prev), { emitEvent: false });
-        }
-        if (res.w) {
-          heightCtrl.setValue(height + (res.w.curr - res.w.prev), { emitEvent: false });
-        }
-      }
-    })
-  );
+): Observable<TQrConfigFormValues['width']> => widthCtrl.valueChanges.pipe(tap((width) => heightCtrl.setValue(width)));
