@@ -9,6 +9,7 @@ import { FloatLabel } from 'primeng/floatlabel';
 import { ColorPickerModule } from 'primeng/colorpicker';
 import { Fieldset } from 'primeng/fieldset';
 import { SelectButtonModule } from 'primeng/selectbutton';
+import { GradientFormComponent } from './gradient-form.component';
 
 @Component({
   selector: 'app-dot-options-form',
@@ -21,13 +22,13 @@ import { SelectButtonModule } from 'primeng/selectbutton';
     ColorPickerModule,
     Fieldset,
     SelectButtonModule,
+    GradientFormComponent,
   ],
   templateUrl: './dot-options-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DotOptionsFormComponent {
   readonly form = input<FormGroup<IQrDotOptionsFormControls> | null>(null);
-  protected readonly FormGroup = FormGroup;
   protected readonly DotTypeOpts = DOT_TYPES;
   protected readonly i18nPrefix = 'pages.qr-code.form.dotOptions';
 }

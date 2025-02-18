@@ -1,0 +1,41 @@
+@let formGroup = form();
+@if (formGroup) {
+  <form [formGroup]="formGroup">
+    <p-fieldset [legend]="i18nPrefix + '.typeLabel' | translate">
+      <span class="sr-only" id="{{ componentID }}-type">
+        {{ i18nPrefix + '.typeLabel' | translate }}
+      </span>
+      <p-selectbutton [options]="gradientTypeOpts" formControlName="type" ariaLabelledBy="{{ componentID }}-type" />
+    </p-fieldset>
+    <p-fieldset [legend]="(i18nPrefix + '.rotationLabel' | translate) + ' ' + formGroup.controls.rotation.value + ' °'">
+      <span class="sr-only" id="{{ componentID }}-rotation">
+        {{ i18nPrefix + '.rotationLabel' | translate }} {{ formGroup.controls.rotation.value + ' °' }}
+      </span>
+      <p-slider
+        formControlName="rotation"
+        ariaLabelledBy="{{ componentID }}-rotation"
+        min="0"
+        max="360"
+        styleClass="my-2"
+      />
+    </p-fieldset>
+    <p-fieldset [legend]="i18nPrefix + '.colorsLabel' | translate">
+      <span class="sr-only" id="{{ componentID }}-color">
+        {{ i18nPrefix + '.colorsLabel' | translate }}
+      </span>
+      <div formArrayName="colorStops" class="flex space-x-2">
+        @for (stop of formGroup.controls.colorStops.controls; track stop; let i = $index) {
+          <form [formGroupName]="i">
+            <span id="{{ componentID }}-color-{{ i }}" class="sr-only">
+              {{ i18nPrefix + '.colorLabel' | translate }} {{ i + 1 }}
+            </span>
+            <p-colorPicker formControlName="color" attr.aria-labelledby="{{ componentID }}-color-{{ i }}" />
+          </form>
+        }
+      </div>
+    </p-fieldset>
+  </form>
+  <pre>
+    {{ formGroup.value | json }}
+  </pre>
+}

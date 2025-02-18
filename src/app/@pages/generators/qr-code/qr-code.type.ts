@@ -1,4 +1,4 @@
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { DotType, Gradient, Options as QROptions } from 'ngx-qrcode-styling';
 
 export type TQROptions = QROptions & {
@@ -35,8 +35,15 @@ export type TQRDotOptionsFormValues = TQRCommonOptionsFormGroup['value'];
 export interface IQrGradientFormControls {
   type: FormControl<Gradient['type']>;
   rotation: FormControl<Gradient['rotation']>;
-  colorStops: FormControl<Gradient['colorStops']>;
+  colorStops: FormArray<FormGroup<IQrColorStopFormControls>>;
 }
 
 export type TQRGradientFormGroup = FormGroup<IQrGradientFormControls>;
 export type TQRGradientFormValues = TQRGradientFormGroup['value'] & Gradient;
+export interface IQrColorStopFormControls {
+  offset: FormControl<Gradient['colorStops'][0]['offset']>;
+  color: FormControl<Gradient['colorStops'][0]['color']>;
+}
+
+export type TQRColorStopFormGroup = FormGroup<IQrColorStopFormControls>;
+export type TQRColorStopFormValues = TQRColorStopFormGroup['value'] & Gradient['colorStops'][0];

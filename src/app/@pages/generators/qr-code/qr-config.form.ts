@@ -1,5 +1,6 @@
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import {
+  IQrColorStopFormControls,
   IQrConfigFormControls,
   IQRDotOptions,
   IQrDotOptionsFormControls,
@@ -7,7 +8,7 @@ import {
   TQrConfigFormGroup,
   TQrConfigFormValues,
 } from '@pages/generators/qr-code/qr-code.type';
-import { Gradient } from 'ngx-qrcode-styling';
+import { Gradient, GradientType } from 'ngx-qrcode-styling';
 import { Observable, tap } from 'rxjs';
 
 /**
@@ -97,6 +98,12 @@ const dotOptionsFormGroupFactory = (initialValue: IQRDotOptions) => {
 export const DOT_TYPES = ['dots', 'rounded', 'classy', 'classy-rounded', 'square', 'extra-rounded'];
 
 const gradientFormGroupFactory = (initialValue: Gradient) => {
+  const colorStops = new FormArray<FormGroup<IQrColorStopFormControls>>([]);
+
+  initialValue.colorStops.forEach((stop) => {
+    colorStops.push(gradientColorStopFormGroupFactory(stop));
+  });
+
   return new FormGroup<IQrGradientFormControls>({
     type: new FormControl(initialValue.type, {
       nonNullable: true,
@@ -106,8 +113,21 @@ const gradientFormGroupFactory = (initialValue: Gradient) => {
       nonNullable: true,
       validators: [Validators.required, Validators.min(0), Validators.max(360)],
     }),
-    colorStops: new FormControl(initialValue.colorStops, {
+    colorStops,
+  });
+};
+
+export const GRADIENT_TYPES: GradientType[] = ['linear', 'radial'];
+
+const gradientColorStopFormGroupFactory = (initialValue: Gradient['colorStops'][0]) => {
+  return new FormGroup<IQrColorStopFormControls>({
+    offset: new FormControl(initialValue.offset, {
       nonNullable: true,
+      validators: [Validators.required, Validators.min(0), Validators.max(1)],
+    }),
+    color: new FormControl(initialValue.color, {
+      nonNullable: true,
+      validators: [Validators.required],
     }),
   });
 };

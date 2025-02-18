@@ -21,7 +21,16 @@ const initialState: IQRCodeState = {
       gradient: {
         type: 'linear',
         rotation: 0,
-        colorStops: [],
+        colorStops: [
+          {
+            offset: 0,
+            color: '#000000',
+          },
+          {
+            offset: 1,
+            color: '#DDDDDD',
+          },
+        ],
       },
     },
   },

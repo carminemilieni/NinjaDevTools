@@ -12,9 +12,14 @@
       "form": {
         "dataLabel": "Dati",
         "dotOptions": {
-          "colorLabel": "Colore",
           "title": "Impostazioni punti",
           "typeLabel": "Tipo"
+        },
+        "gradient": {
+          "colorLabel": "Colore",
+          "colorsLabel": "Colori",
+          "rotationLabel": "Angolo gradiente",
+          "typeLabel": "Tipo gradiente"
         },
         "lockProportionsOffLabel": "Proporzioni libere",
         "lockProportionsOnLabel": "Proporzioni fisse",
