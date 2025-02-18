@@ -13,7 +13,7 @@ import { InputText } from 'primeng/inputtext';
 import { FileUpload, FileUploadHandlerEvent } from 'primeng/fileupload';
 import { NGXLogger } from 'ngx-logger';
 import { Button } from 'primeng/button';
-import { CommonFormComponent } from '@pages/generators/qr-code/components/common-form.component';
+import { DotOptionsFormComponent } from './';
 
 /**
  * @description
@@ -30,7 +30,7 @@ import { CommonFormComponent } from '@pages/generators/qr-code/components/common
     InputText,
     FileUpload,
     Button,
-    CommonFormComponent,
+    DotOptionsFormComponent,
   ],
   templateUrl: './config-form.component.html',
 })

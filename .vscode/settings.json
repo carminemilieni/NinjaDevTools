@@ -54,7 +54,11 @@
     "javascript.preferences.importModuleSpecifier": "relative",
     "cSpell.language": "en,it",
     "cSpell.words": [
-        "jsonsort"
+        "floatlabel",
+        "jsonsort",
+        "PRIMENG",
+        "Qrcode",
+        "selectbutton"
     ],
     "css.fileExtensions": ["html", "css"],
     "css.classNameCompletion.enabled": true,

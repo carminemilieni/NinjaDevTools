@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, effect, inject, signal } from '@ang
 import { NgxQrcodeStylingModule } from 'ngx-qrcode-styling';
 import { QrCodeStore } from './qr-code.store';
 import { CommonModule } from '@angular/common';
-import { ConfigFormComponent } from './components/config-form.component';
+import { ConfigFormComponent } from './components';
 
 /**
  * @description

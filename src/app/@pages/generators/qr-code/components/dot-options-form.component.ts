@@ -11,7 +11,7 @@ import { Fieldset } from 'primeng/fieldset';
 import { SelectButtonModule } from 'primeng/selectbutton';
 
 @Component({
-  selector: 'app-common-form',
+  selector: 'app-dot-options-form',
   imports: [
     Panel,
     ReactiveFormsModule,
@@ -22,13 +22,12 @@ import { SelectButtonModule } from 'primeng/selectbutton';
     Fieldset,
     SelectButtonModule,
   ],
-  templateUrl: './common-form.component.html',
+  templateUrl: './dot-options-form.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CommonFormComponent {
+export class DotOptionsFormComponent {
   readonly form = input<FormGroup<IQrDotOptionsFormControls> | null>(null);
   protected readonly FormGroup = FormGroup;
   protected readonly DotTypeOpts = DOT_TYPES;
   protected readonly i18nPrefix = 'pages.qr-code.form.dotOptions';
-  protected readonly Select = Select;
 }

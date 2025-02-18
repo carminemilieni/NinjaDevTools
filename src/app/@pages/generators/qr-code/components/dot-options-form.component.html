@@ -12,7 +12,9 @@
         />
         <label for="type">{{ i18nPrefix + '.typeLabel' | translate }}</label>
       </p-floatlabel>
-      <p-fieldset [legend]="i18nPrefix + '.colorLabel' | translate">
+      <p-fieldset [legend]="i18nPrefix + '.colorLabel' | translate"
+        >ss
+        <p-selectbutton [options]="[]" optionLabel="label" optionValue="value" aria-labelledby="basic" />
         <p-colorPicker formControlName="color" id="color" inputId="color" />
       </p-fieldset>
     </div>
