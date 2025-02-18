@@ -5,6 +5,7 @@ export const environment = {
   languageOptions: {
     defaultLanguage: 'en',
     available: ['en', 'it'],
+    cache: true,
   },
   logger: {
     level: NgxLoggerLevel.TRACE,
