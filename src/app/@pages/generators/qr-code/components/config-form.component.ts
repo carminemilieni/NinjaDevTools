@@ -7,7 +7,7 @@ import { FloatLabel } from 'primeng/floatlabel';
 import { tap } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { QrCodeStore } from '@pages/generators/qr-code/qr-code.store';
-import { TQrConfigFormGroup } from '@pages/generators/qr-code/qr-code.type';
+import { TQrConfigFormGroup, TQrConfigFormValues } from '@pages/generators/qr-code/qr-code.type';
 import { TranslatePipe } from '@ngx-translate/core';
 import { InputText } from 'primeng/inputtext';
 import { FileUpload, FileUploadHandlerEvent } from 'primeng/fileupload';
@@ -50,7 +50,7 @@ export class ConfigFormComponent {
     this.formGroup = form;
     this.#handlers.push(...handlers$.map((h) => toSignal<any>(h)));
     this.#updateStateEffect = toSignal(
-      this.formGroup.valueChanges.pipe(tap((values) => this.#store.patchValues(values)))
+      this.formGroup.valueChanges.pipe(tap((values) => this.#store.patchValues(values as TQrConfigFormValues)))
     );
   }
 

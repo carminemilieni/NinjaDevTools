@@ -3,9 +3,11 @@ import {
   IQrConfigFormControls,
   IQRDotOptions,
   IQrDotOptionsFormControls,
+  IQrGradientFormControls,
   TQrConfigFormGroup,
   TQrConfigFormValues,
 } from '@pages/generators/qr-code/qr-code.type';
+import { Gradient } from 'ngx-qrcode-styling';
 import { Observable, tap } from 'rxjs';
 
 /**
@@ -23,14 +25,14 @@ import { Observable, tap } from 'rxjs';
  * @returns The form and its handlers.
  */
 export default (
-  initialValues: Partial<TQrConfigFormValues>
+  initialValues: TQrConfigFormValues
 ): {
   form: TQrConfigFormGroup;
   handlers$: Observable<any>[];
 } => {
   const nonNullable = true;
 
-  const dotsOptions = dotOptionsFormGroupFactory(initialValues.dotsOptions ?? {});
+  const dotsOptions = dotOptionsFormGroupFactory(initialValues.dotsOptions);
 
   const form = new FormGroup<IQrConfigFormControls>({
     width: new FormControl(initialValues.width ?? 0, {
@@ -79,6 +81,7 @@ const dimensionHandler$ = (
 ): Observable<TQrConfigFormValues['width']> => widthCtrl.valueChanges.pipe(tap((width) => heightCtrl.setValue(width)));
 
 const dotOptionsFormGroupFactory = (initialValue: IQRDotOptions) => {
+  const gradient = gradientFormGroupFactory(initialValue.gradient);
   return new FormGroup<IQrDotOptionsFormControls>({
     color: new FormControl(initialValue.color, {
       nonNullable: true,
@@ -87,10 +90,24 @@ const dotOptionsFormGroupFactory = (initialValue: IQRDotOptions) => {
       nonNullable: true,
       validators: [Validators.required],
     }),
-    gradient: new FormControl(initialValue.gradient, {
-      nonNullable: true,
-    }),
+    gradient,
   });
 };
 
 export const DOT_TYPES = ['dots', 'rounded', 'classy', 'classy-rounded', 'square', 'extra-rounded'];
+
+const gradientFormGroupFactory = (initialValue: Gradient) => {
+  return new FormGroup<IQrGradientFormControls>({
+    type: new FormControl(initialValue.type, {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    rotation: new FormControl(initialValue?.rotation, {
+      nonNullable: true,
+      validators: [Validators.required, Validators.min(0), Validators.max(360)],
+    }),
+    colorStops: new FormControl(initialValue.colorStops, {
+      nonNullable: true,
+    }),
+  });
+};

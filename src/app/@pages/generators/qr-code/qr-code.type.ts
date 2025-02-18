@@ -18,16 +18,25 @@ export type TQrConfigFormGroup = FormGroup<IQrConfigFormControls>;
 export type TQrConfigFormValues = TQrConfigFormGroup['value'] & TQROptions;
 
 export interface IQRDotOptions {
-  type?: DotType;
-  color?: string;
-  gradient?: Gradient;
+  type: DotType;
+  color: string;
+  gradient: Gradient;
 }
 
 export interface IQrDotOptionsFormControls {
   color: FormControl<IQRDotOptions['color']>;
   type: FormControl<IQRDotOptions['type']>;
-  gradient: FormControl<IQRDotOptions['gradient']>;
+  gradient: FormGroup<IQrGradientFormControls>;
 }
 
 export type TQRCommonOptionsFormGroup = FormGroup<IQrDotOptionsFormControls>;
 export type TQRDotOptionsFormValues = TQRCommonOptionsFormGroup['value'];
+
+export interface IQrGradientFormControls {
+  type: FormControl<Gradient['type']>;
+  rotation: FormControl<Gradient['rotation']>;
+  colorStops: FormControl<Gradient['colorStops']>;
+}
+
+export type TQRGradientFormGroup = FormGroup<IQrGradientFormControls>;
+export type TQRGradientFormValues = TQRGradientFormGroup['value'] & Gradient;

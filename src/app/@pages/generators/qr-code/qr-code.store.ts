@@ -5,7 +5,7 @@ import { TQrConfigFormValues } from '@pages/generators/qr-code/qr-code.type';
 import { computed } from '@angular/core';
 
 interface IQRCodeState {
-  config: Partial<TQrConfigFormValues>;
+  config: TQrConfigFormValues;
 }
 
 const initialState: IQRCodeState = {
@@ -18,6 +18,11 @@ const initialState: IQRCodeState = {
     dotsOptions: {
       type: 'square',
       color: '#000000',
+      gradient: {
+        type: 'linear',
+        rotation: 0,
+        colorStops: [],
+      },
     },
   },
 };
@@ -32,7 +37,7 @@ export const QrCodeStore = signalStore(
   withState(initialState),
   withLogger(storeKey),
   withMethods((store) => ({
-    patchValues: (values: Partial<TQrConfigFormValues>) => updateState(store, `${storeKey}`, updateConfig(values)),
+    patchValues: (values: TQrConfigFormValues) => updateState(store, `${storeKey}`, updateConfig(values)),
   })),
   withComputed(({ config }) => ({
     renderConfig: computed(
@@ -46,7 +51,7 @@ export const QrCodeStore = signalStore(
   }))
 );
 
-function updateConfig(values: Partial<TQrConfigFormValues>): PartialStateUpdater<IQRCodeState> {
+function updateConfig(values: TQrConfigFormValues): PartialStateUpdater<IQRCodeState> {
   return () => ({
     config: {
       ...values,
