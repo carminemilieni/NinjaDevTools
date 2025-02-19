@@ -1,6 +1,6 @@
 import { PartialStateUpdater, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
 import { updateState } from '@angular-architects/ngrx-toolkit';
-import { withLogger, withStoragePrefix } from '@shared/features';
+import { withLogger, withStoragePrefix, withTreeShakableDevTools } from '@shared/features';
 import { IQrPageState, TQrConfigFormValues } from '@pages/generators/qr-code/qr-code.type';
 import { computed } from '@angular/core';
 
@@ -75,16 +75,16 @@ const initialState: IQRCodeState = {
   },
   pageState: {
     panelCollapsed: {
-      mainOptions: true,
-      dotsOptions: false,
-      cornersSquareOptions: false,
-      cornersDotOptions: false,
-      backgroundOptions: false,
+      mainOptions: false,
+      dotsOptions: true,
+      cornersSquareOptions: true,
+      cornersDotOptions: true,
+      backgroundOptions: true,
     },
   },
 };
 
-const storeKey = 'qrCode';
+const storeKey = 'QrCode';
 
 /**
  * @description
@@ -93,6 +93,7 @@ const storeKey = 'qrCode';
 export const QrCodeStore = signalStore(
   withState(initialState),
   withLogger(storeKey),
+  withTreeShakableDevTools(storeKey),
   withStoragePrefix(storeKey),
   withMethods((store) => ({
     patchValues: (values: TQrConfigFormValues) => updateState(store, `${storeKey} patchValues`, updateConfig(values)),

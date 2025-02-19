@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ColorPickerModule } from 'primeng/colorpicker';
@@ -9,6 +9,7 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { GradientFormComponent } from './gradient-form.component';
 import { IQrCornersSquareOptionsFormControls } from '../qr-code.type';
 import { CORNERS_SQUARE_TYPES } from '../qr-config.form';
+import { QrCodeStore } from '../qr-code.store';
 
 @Component({
   selector: 'app-corner-square-options-form',
@@ -29,4 +30,10 @@ export class CornersSquareOptionsFormComponent {
   readonly form = input<FormGroup<IQrCornersSquareOptionsFormControls> | null>(null);
   protected readonly CornerSquareTypeOpts = CORNERS_SQUARE_TYPES;
   protected readonly i18nPrefix = 'pages.qr-code.form.cornersSquareOptions';
+  readonly #store = inject(QrCodeStore);
+  protected readonly collapsed = this.#store.pageState.panelCollapsed.cornersSquareOptions;
+
+  setCollapsed(value: boolean) {
+    this.#store.setCollapsed('cornersSquareOptions', value);
+  }
 }

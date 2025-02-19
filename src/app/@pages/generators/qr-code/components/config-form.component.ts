@@ -79,7 +79,6 @@ export class ConfigFormComponent {
   }
 
   setCollapsed(value: boolean) {
-    this.#logger.trace('setCollapsed', value);
     this.#store.setCollapsed('mainOptions', value);
   }
 }
