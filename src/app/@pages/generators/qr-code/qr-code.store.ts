@@ -91,8 +91,8 @@ export const QrCodeStore = signalStore(
       () =>
         ({
           ...config(),
-          width: 300,
-          height: 300,
+          width: 460,
+          height: 460,
         }) as Partial<TQrConfigFormValues>
     ),
   }))

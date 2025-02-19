@@ -1,6 +1,8 @@
-<div class="grid grid-cols-2 gap-4">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
   <app-config-form />
-  @if (viewRendered()) {
-    <ngx-qrcode-styling [config]="config()" />
-  }
+  <div>
+    <div class="md:max-w-[500px]">
+      <app-render-window />
+    </div>
+  </div>
 </div>
