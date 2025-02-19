@@ -43,6 +43,20 @@ const initialState: IQRCodeState = {
         ],
       },
     },
+    cornersDotOptions: {
+      type: 'square',
+      color: '#000000',
+      gradient: {
+        type: 'linear',
+        rotation: 0,
+        colorStops: [
+          {
+            offset: 0,
+            color: '#000000',
+          },
+        ],
+      },
+    },
   },
 };
 

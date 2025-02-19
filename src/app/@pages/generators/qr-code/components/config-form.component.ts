@@ -17,6 +17,7 @@ import { Button } from 'primeng/button';
 import { DotOptionsFormComponent } from './';
 import { CommonModule } from '@angular/common';
 import { CornersSquareOptionsFormComponent } from './corners-square-options-form.component';
+import { CornersDotOptionsFormComponent } from './corners-dot-options-form.component';
 
 /**
  * @description
@@ -36,6 +37,7 @@ import { CornersSquareOptionsFormComponent } from './corners-square-options-form
     DotOptionsFormComponent,
     CommonModule,
     CornersSquareOptionsFormComponent,
+    CornersDotOptionsFormComponent,
   ],
   templateUrl: './config-form.component.html',
 })

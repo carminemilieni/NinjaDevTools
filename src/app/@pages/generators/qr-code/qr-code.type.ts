@@ -1,9 +1,10 @@
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { CornerSquareType, DotType, Gradient, Options as QROptions } from 'ngx-qrcode-styling';
+import { CornerDotType, CornerSquareType, DotType, Gradient, Options as QROptions } from 'ngx-qrcode-styling';
 
 export type TQROptions = QROptions & {
   dotsOptions: IQRDotOptions;
   cornersSquareOptions: IQrCornersSquareOptions;
+  cornersDotOptions: IQrCornersDotOptions;
 };
 
 export interface IQrConfigFormControls {
@@ -14,11 +15,15 @@ export interface IQrConfigFormControls {
   margin: FormControl<TQROptions['margin']>;
   dotsOptions: FormGroup<IQrDotOptionsFormControls>;
   cornersSquareOptions: FormGroup<IQrCornersSquareOptionsFormControls>;
+  cornersDotOptions: FormGroup<IQrCornersDotOptionsFormControls>;
 }
 
 export type TQrConfigFormGroup = FormGroup<IQrConfigFormControls>;
 export type TQrConfigFormValues = TQrConfigFormGroup['value'] & TQROptions;
 
+/**
+ * Dot Options
+ */
 export interface IQRDotOptions {
   type: DotType;
   color: string;
@@ -33,6 +38,10 @@ export interface IQrDotOptionsFormControls {
 
 export type TQRCommonOptionsFormGroup = FormGroup<IQrDotOptionsFormControls>;
 export type TQRDotOptionsFormValues = TQRCommonOptionsFormGroup['value'];
+
+/**
+ * Corners Square Options
+ */
 
 export interface IQrCornersSquareOptions {
   type: CornerSquareType;
@@ -49,6 +58,27 @@ export interface IQrCornersSquareOptionsFormControls {
 export type TQRCornersSquareOptionsFormGroup = FormGroup<IQrCornersSquareOptionsFormControls>;
 export type TQRCornersSquareOptionsFormValues = TQRCornersSquareOptionsFormGroup['value'];
 
+/**
+ * Corners Dot Options
+ */
+export interface IQrCornersDotOptions {
+  type: CornerDotType;
+  color: string;
+  gradient: Gradient;
+}
+
+export interface IQrCornersDotOptionsFormControls {
+  color: FormControl<IQrCornersDotOptions['color']>;
+  type: FormControl<IQrCornersDotOptions['type']>;
+  gradient: FormGroup<IQrGradientFormControls>;
+}
+
+export type TQRCornersDotOptionsFormGroup = FormGroup<IQrCornersDotOptionsFormControls>;
+export type TQRCornersDotOptionsFormValues = TQRCornersDotOptionsFormGroup['value'];
+
+/**
+ * Gradient
+ */
 export interface IQrGradientFormControls {
   type: FormControl<Gradient['type']>;
   rotation: FormControl<Gradient['rotation']>;

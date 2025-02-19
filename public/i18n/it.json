@@ -10,13 +10,17 @@
   "pages": {
     "qr-code": {
       "form": {
+        "cornersDotOptions": {
+          "title": "Interno angoli",
+          "typeLabel": "Tipo"
+        },
         "cornersSquareOptions": {
-          "title": "Impostazioni angoli quadrati",
+          "title": "Esterno angoli",
           "typeLabel": "Tipo"
         },
         "dataLabel": "Dati",
         "dotOptions": {
-          "title": "Impostazioni punti",
+          "title": "Punti",
           "typeLabel": "Tipo"
         },
         "gradient": {
