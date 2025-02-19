@@ -10,6 +10,9 @@
   "pages": {
     "qr-code": {
       "form": {
+        "backgroundOptions": {
+          "title": "Sfondo"
+        },
         "cornersDotOptions": {
           "title": "Interno angoli",
           "typeLabel": "Tipo"

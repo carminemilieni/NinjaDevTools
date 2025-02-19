@@ -18,6 +18,7 @@ import { DotOptionsFormComponent } from './';
 import { CommonModule } from '@angular/common';
 import { CornersSquareOptionsFormComponent } from './corners-square-options-form.component';
 import { CornersDotOptionsFormComponent } from './corners-dot-options-form.component';
+import { BackgroundOptionsFormComponent } from './background-options-form.component';
 
 /**
  * @description
@@ -38,6 +39,7 @@ import { CornersDotOptionsFormComponent } from './corners-dot-options-form.compo
     CommonModule,
     CornersSquareOptionsFormComponent,
     CornersDotOptionsFormComponent,
+    BackgroundOptionsFormComponent,
   ],
   templateUrl: './config-form.component.html',
 })

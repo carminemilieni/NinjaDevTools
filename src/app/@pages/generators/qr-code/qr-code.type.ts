@@ -5,6 +5,7 @@ export type TQROptions = QROptions & {
   dotsOptions: IQRDotOptions;
   cornersSquareOptions: IQrCornersSquareOptions;
   cornersDotOptions: IQrCornersDotOptions;
+  backgroundOptions: IQrBackgroundOptions;
 };
 
 export interface IQrConfigFormControls {
@@ -16,6 +17,7 @@ export interface IQrConfigFormControls {
   dotsOptions: FormGroup<IQrDotOptionsFormControls>;
   cornersSquareOptions: FormGroup<IQrCornersSquareOptionsFormControls>;
   cornersDotOptions: FormGroup<IQrCornersDotOptionsFormControls>;
+  backgroundOptions: FormGroup<IQrBackgroundOptionsFormControls>;
 }
 
 export type TQrConfigFormGroup = FormGroup<IQrConfigFormControls>;
@@ -75,6 +77,24 @@ export interface IQrCornersDotOptionsFormControls {
 
 export type TQRCornersDotOptionsFormGroup = FormGroup<IQrCornersDotOptionsFormControls>;
 export type TQRCornersDotOptionsFormValues = TQRCornersDotOptionsFormGroup['value'];
+
+/**
+ * Background
+ */
+export interface IQrBackgroundOptions {
+  round: number;
+  color: string;
+  gradient: Gradient;
+}
+
+export interface IQrBackgroundOptionsFormControls {
+  round: FormControl<IQrBackgroundOptions['round']>;
+  color: FormControl<IQrBackgroundOptions['color']>;
+  gradient: FormGroup<IQrGradientFormControls>;
+}
+
+export type TQRBackgroundOptionsFormGroup = FormGroup<IQrBackgroundOptionsFormControls>;
+export type TQRBackgroundOptionsFormValues = TQRBackgroundOptionsFormGroup['value'];
 
 /**
  * Gradient

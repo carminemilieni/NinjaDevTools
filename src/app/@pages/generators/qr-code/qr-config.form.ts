@@ -1,6 +1,8 @@
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { AppValidators } from '@app/@shared/validators';
 import {
+  IQrBackgroundOptions,
+  IQrBackgroundOptionsFormControls,
   IQrColorStopFormControls,
   IQrConfigFormControls,
   IQrCornersDotOptions,
@@ -44,6 +46,8 @@ export default (
 
   const cornersDotOptions = cornersDotOptionsFormGroupFactory(initialValues.cornersDotOptions);
 
+  const backgroundOptions = backgroundOptionsFormGroupFactory(initialValues.backgroundOptions);
+
   const form = new FormGroup<IQrConfigFormControls>({
     width: new FormControl(initialValues.width ?? 0, {
       nonNullable,
@@ -79,6 +83,7 @@ export default (
     dotsOptions,
     cornersSquareOptions,
     cornersDotOptions,
+    backgroundOptions,
   });
 
   const handlers$: Observable<any>[] = [];
@@ -155,6 +160,19 @@ const cornersDotOptionsFormGroupFactory = (initialValue: IQrCornersDotOptions) =
 };
 
 export const CORNERS_DOT_TYPES: CornerDotType[] = ['dot', 'square'];
+
+const backgroundOptionsFormGroupFactory = (initialValue: IQrBackgroundOptions) => {
+  const gradient = gradientFormGroupFactory(initialValue.gradient);
+  return new FormGroup<IQrBackgroundOptionsFormControls>({
+    color: new FormControl(initialValue.color, {
+      nonNullable: true,
+    }),
+    round: new FormControl(initialValue.round, {
+      nonNullable: true,
+    }),
+    gradient,
+  });
+};
 
 const gradientFormGroupFactory = (initialValue: Gradient) => {
   const colorStops = new FormArray<FormGroup<IQrColorStopFormControls>>([], {

@@ -57,6 +57,20 @@ const initialState: IQRCodeState = {
         ],
       },
     },
+    backgroundOptions: {
+      round: 0,
+      color: '#ffffff',
+      gradient: {
+        type: 'linear',
+        rotation: 0,
+        colorStops: [
+          {
+            offset: 0,
+            color: '#ffffff',
+          },
+        ],
+      },
+    },
   },
 };
 
