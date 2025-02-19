@@ -19,6 +19,7 @@ import { CommonModule } from '@angular/common';
 import { CornersSquareOptionsFormComponent } from './corners-square-options-form.component';
 import { CornersDotOptionsFormComponent } from './corners-dot-options-form.component';
 import { BackgroundOptionsFormComponent } from './background-options-form.component';
+import { PanelModule } from 'primeng/panel';
 
 /**
  * @description
@@ -40,6 +41,7 @@ import { BackgroundOptionsFormComponent } from './background-options-form.compon
     CornersSquareOptionsFormComponent,
     CornersDotOptionsFormComponent,
     BackgroundOptionsFormComponent,
+    PanelModule,
   ],
   templateUrl: './config-form.component.html',
 })

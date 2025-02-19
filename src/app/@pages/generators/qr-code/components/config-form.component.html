@@ -1,62 +1,64 @@
 <form [formGroup]="formGroup">
-  <p-card>
-    <div class="grid gap-5">
-      <p-floatlabel variant="on">
-        <p-input-number
-          formControlName="width"
-          inputId="width"
-          id="width"
-          showButtons
-          class="w-full"
-          [min]="ValidationConstraints.WidthMin"
-          [max]="ValidationConstraints.WidthMax"
-        />
-        <label for="width">
-          {{ i18nPrefix + '.widthLabel' | translate }}
-        </label>
-      </p-floatlabel>
-      <p-floatlabel variant="on">
-        <input pInputText formControlName="data" id="data" class="w-full" />
-        <label for="data">{{ i18nPrefix + '.dataLabel' | translate }}</label>
-      </p-floatlabel>
-      <p-floatlabel variant="on">
-        <p-input-number
-          formControlName="margin"
-          inputId="margin"
-          id="margin"
-          showButtons
-          class="w-full"
-          [min]="ValidationConstraints.MarginMin"
-          [max]="ValidationConstraints.MarginMax"
-        />
-        <label for="margin">
-          {{ i18nPrefix + '.marginLabel' | translate }}
-        </label>
-      </p-floatlabel>
-      <div class="flex">
-        @if (viewUpload()) {
-          <p-fileupload
-            mode="basic"
-            chooseIcon="pi pi-upload"
-            accept="image/*"
-            maxFileSize="1000000"
-            customUpload
-            (uploadHandler)="onBasicUploadAuto($event)"
-            [auto]="true"
-            [chooseLabel]="i18nPrefix + '.uploadImageLabel' | translate"
-            class="w-auto"
+  <div class="mb-5">
+    <p-panel [header]="i18nPrefix + '.title' | translate" [toggleable]="true" [collapsed]="true">
+      <div class="grid gap-5">
+        <p-floatlabel variant="on">
+          <p-input-number
+            formControlName="width"
+            inputId="width"
+            id="width"
+            showButtons
+            class="w-full"
+            [min]="ValidationConstraints.WidthMin"
+            [max]="ValidationConstraints.WidthMax"
           />
-        }
-        @if (viewRemoveUpload()) {
-          <p-button
-            (click)="onRemoveImage()"
-            icon="pi pi-trash"
-            [label]="i18nPrefix + '.removeImageLabel' | translate"
+          <label for="width">
+            {{ i18nPrefix + '.widthLabel' | translate }}
+          </label>
+        </p-floatlabel>
+        <p-floatlabel variant="on">
+          <input pInputText formControlName="data" id="data" class="w-full" />
+          <label for="data">{{ i18nPrefix + '.dataLabel' | translate }}</label>
+        </p-floatlabel>
+        <p-floatlabel variant="on">
+          <p-input-number
+            formControlName="margin"
+            inputId="margin"
+            id="margin"
+            showButtons
+            class="w-full"
+            [min]="ValidationConstraints.MarginMin"
+            [max]="ValidationConstraints.MarginMax"
           />
-        }
+          <label for="margin">
+            {{ i18nPrefix + '.marginLabel' | translate }}
+          </label>
+        </p-floatlabel>
+        <div class="flex">
+          @if (viewUpload()) {
+            <p-fileupload
+              mode="basic"
+              chooseIcon="pi pi-upload"
+              accept="image/*"
+              maxFileSize="1000000"
+              customUpload
+              (uploadHandler)="onBasicUploadAuto($event)"
+              [auto]="true"
+              [chooseLabel]="i18nPrefix + '.uploadImageLabel' | translate"
+              class="w-auto"
+            />
+          }
+          @if (viewRemoveUpload()) {
+            <p-button
+              (click)="onRemoveImage()"
+              icon="pi pi-trash"
+              [label]="i18nPrefix + '.removeImageLabel' | translate"
+            />
+          }
+        </div>
       </div>
-    </div>
-  </p-card>
+    </p-panel>
+  </div>
   <div class="my-5">
     <app-dot-options-form [form]="formGroup.controls.dotsOptions" />
   </div>
