@@ -1,8 +1,9 @@
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { DotType, Gradient, Options as QROptions } from 'ngx-qrcode-styling';
+import { CornerSquareType, DotType, Gradient, Options as QROptions } from 'ngx-qrcode-styling';
 
 export type TQROptions = QROptions & {
   dotsOptions: IQRDotOptions;
+  cornersSquareOptions: IQrCornersSquareOptions;
 };
 
 export interface IQrConfigFormControls {
@@ -12,6 +13,7 @@ export interface IQrConfigFormControls {
   image: FormControl<TQROptions['image']>;
   margin: FormControl<TQROptions['margin']>;
   dotsOptions: FormGroup<IQrDotOptionsFormControls>;
+  cornersSquareOptions: FormGroup<IQrCornersSquareOptionsFormControls>;
 }
 
 export type TQrConfigFormGroup = FormGroup<IQrConfigFormControls>;
@@ -31,6 +33,21 @@ export interface IQrDotOptionsFormControls {
 
 export type TQRCommonOptionsFormGroup = FormGroup<IQrDotOptionsFormControls>;
 export type TQRDotOptionsFormValues = TQRCommonOptionsFormGroup['value'];
+
+export interface IQrCornersSquareOptions {
+  type: CornerSquareType;
+  color: string;
+  gradient: Gradient;
+}
+
+export interface IQrCornersSquareOptionsFormControls {
+  color: FormControl<IQrCornersSquareOptions['color']>;
+  type: FormControl<IQrCornersSquareOptions['type']>;
+  gradient: FormGroup<IQrGradientFormControls>;
+}
+
+export type TQRCornersSquareOptionsFormGroup = FormGroup<IQrCornersSquareOptionsFormControls>;
+export type TQRCornersSquareOptionsFormValues = TQRCornersSquareOptionsFormGroup['value'];
 
 export interface IQrGradientFormControls {
   type: FormControl<Gradient['type']>;

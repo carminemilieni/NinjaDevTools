@@ -3,13 +3,15 @@ import { AppValidators } from '@app/@shared/validators';
 import {
   IQrColorStopFormControls,
   IQrConfigFormControls,
+  IQrCornersSquareOptions,
+  IQrCornersSquareOptionsFormControls,
   IQRDotOptions,
   IQrDotOptionsFormControls,
   IQrGradientFormControls,
   TQrConfigFormGroup,
   TQrConfigFormValues,
 } from '@pages/generators/qr-code/qr-code.type';
-import { Gradient, GradientType } from 'ngx-qrcode-styling';
+import { CornerSquareType, DotType, Gradient, GradientType } from 'ngx-qrcode-styling';
 import { distinctUntilChanged, map, Observable, tap } from 'rxjs';
 
 /**
@@ -35,6 +37,8 @@ export default (
   const nonNullable = true;
 
   const dotsOptions = dotOptionsFormGroupFactory(initialValues.dotsOptions);
+
+  const cornersSquareOptions = cornersSquareOptionsFormGroupFactory(initialValues.cornersSquareOptions);
 
   const form = new FormGroup<IQrConfigFormControls>({
     width: new FormControl(initialValues.width ?? 0, {
@@ -69,6 +73,7 @@ export default (
       ],
     }),
     dotsOptions,
+    cornersSquareOptions,
   });
 
   const handlers$: Observable<any>[] = [];
@@ -112,7 +117,23 @@ const dotOptionsFormGroupFactory = (initialValue: IQRDotOptions) => {
   });
 };
 
-export const DOT_TYPES = ['dots', 'rounded', 'classy', 'classy-rounded', 'square', 'extra-rounded'];
+export const DOT_TYPES: DotType[] = ['dots', 'rounded', 'classy', 'classy-rounded', 'square', 'extra-rounded'];
+
+const cornersSquareOptionsFormGroupFactory = (initialValue: IQrCornersSquareOptions) => {
+  const gradient = gradientFormGroupFactory(initialValue.gradient);
+  return new FormGroup<IQrCornersSquareOptionsFormControls>({
+    color: new FormControl(initialValue.color, {
+      nonNullable: true,
+    }),
+    type: new FormControl(initialValue.type, {
+      nonNullable: true,
+      validators: [AppValidators.required],
+    }),
+    gradient,
+  });
+};
+
+export const CORNERS_SQUARE_TYPES: CornerSquareType[] = ['dot', 'square', 'extra-rounded'];
 
 const gradientFormGroupFactory = (initialValue: Gradient) => {
   const colorStops = new FormArray<FormGroup<IQrColorStopFormControls>>([], {

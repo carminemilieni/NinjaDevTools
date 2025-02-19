@@ -10,6 +10,10 @@
   "pages": {
     "qr-code": {
       "form": {
+        "cornersSquareOptions": {
+          "title": "Impostazioni angoli quadrati",
+          "typeLabel": "Tipo"
+        },
         "dataLabel": "Dati",
         "dotOptions": {
           "title": "Impostazioni punti",

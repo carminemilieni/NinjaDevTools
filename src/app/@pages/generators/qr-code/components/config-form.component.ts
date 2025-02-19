@@ -16,6 +16,7 @@ import { NGXLogger } from 'ngx-logger';
 import { Button } from 'primeng/button';
 import { DotOptionsFormComponent } from './';
 import { CommonModule } from '@angular/common';
+import { CornersSquareOptionsFormComponent } from './corners-square-options-form.component';
 
 /**
  * @description
@@ -34,6 +35,7 @@ import { CommonModule } from '@angular/common';
     Button,
     DotOptionsFormComponent,
     CommonModule,
+    CornersSquareOptionsFormComponent,
   ],
   templateUrl: './config-form.component.html',
 })

@@ -7,7 +7,6 @@ import { DOT_TYPES } from '@pages/generators/qr-code/qr-config.form';
 import { TranslatePipe } from '@ngx-translate/core';
 import { FloatLabel } from 'primeng/floatlabel';
 import { ColorPickerModule } from 'primeng/colorpicker';
-import { Fieldset } from 'primeng/fieldset';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { GradientFormComponent } from './gradient-form.component';
 
@@ -20,7 +19,6 @@ import { GradientFormComponent } from './gradient-form.component';
     TranslatePipe,
     FloatLabel,
     ColorPickerModule,
-    Fieldset,
     SelectButtonModule,
     GradientFormComponent,
   ],
