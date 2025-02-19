@@ -16,8 +16,10 @@
           "typeLabel": "Tipo"
         },
         "gradient": {
+          "addColorLabel": "Aggiungi colore",
           "colorLabel": "Colore",
           "colorsLabel": "Colori",
+          "removeColorLabel": "Rimuovi colore",
           "rotationLabel": "Angolo gradiente",
           "typeLabel": "Tipo gradiente"
         },
@@ -50,5 +52,8 @@
         "lightMode": "Modalità chiara"
       }
     }
+  },
+  "validation": {
+    "arrayLength": "Gli elementi devono essere tra {{min}} e {{max}}, ora sei a {{actual}}"
   }
 }

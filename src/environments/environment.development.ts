@@ -6,6 +6,7 @@ export const environment = {
     defaultLanguage: 'en',
     available: ['en', 'it'],
     cache: true,
+    prefixOfFormValidationKeys: 'validation',
   },
   logger: {
     level: NgxLoggerLevel.TRACE,
