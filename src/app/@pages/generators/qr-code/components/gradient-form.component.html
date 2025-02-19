@@ -14,8 +14,8 @@
       <p-slider
         formControlName="rotation"
         ariaLabelledBy="{{ componentID }}-rotation"
-        min="0"
-        max="360"
+        [min]="ValidationConstraints.RotationMin"
+        [max]="ValidationConstraints.RotationMax"
         styleClass="my-2"
       />
     </p-fieldset>
@@ -23,19 +23,36 @@
       <span class="sr-only" id="{{ componentID }}-color">
         {{ i18nPrefix + '.colorsLabel' | translate }}
       </span>
-      <div formArrayName="colorStops" class="flex space-x-2">
-        @for (stop of formGroup.controls.colorStops.controls; track stop; let i = $index) {
-          <form [formGroupName]="i">
-            <span id="{{ componentID }}-color-{{ i }}" class="sr-only">
-              {{ i18nPrefix + '.colorLabel' | translate }} {{ i + 1 }}
-            </span>
-            <p-colorPicker formControlName="color" attr.aria-labelledby="{{ componentID }}-color-{{ i }}" />
-          </form>
-        }
+      <div formArrayName="colorStops" class="flex items-center justify-between">
+        <div class="flex space-x-2">
+          @for (stop of formGroup.controls.colorStops.controls; track stop; let i = $index) {
+            <form [formGroupName]="i">
+              <span id="{{ componentID }}-color-{{ i }}" class="sr-only">
+                {{ i18nPrefix + '.colorLabel' | translate }} {{ i + 1 }}
+              </span>
+              <p-colorPicker formControlName="color" attr.aria-labelledby="{{ componentID }}-color-{{ i }}" />
+            </form>
+          }
+        </div>
+        <div class="flex space-x-2 items-center">
+          <p-button
+            icon="pi pi-plus"
+            [attr.aria-label]="i18nPrefix + '.addColorLabel' | translate"
+            (onClick)="addStop(formGroup)"
+            [disabled]="formGroup.controls.colorStops.length >= ValidationConstraints.ColorStopsMaxLength"
+            size="small"
+            severity="secondary"
+          />
+          <p-button
+            icon="pi pi-minus"
+            [attr.aria-label]="i18nPrefix + '.removeColorLabel' | translate"
+            (onClick)="removeStop(formGroup)"
+            [disabled]="formGroup.controls.colorStops.length <= ValidationConstraints.ColorStopsMinLength"
+            size="small"
+            severity="secondary"
+          />
+        </div>
       </div>
     </p-fieldset>
   </form>
-  <pre>
-    {{ formGroup.value | json }}
-  </pre>
 }

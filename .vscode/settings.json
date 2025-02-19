@@ -58,7 +58,8 @@
         "jsonsort",
         "PRIMENG",
         "Qrcode",
-        "selectbutton"
+        "selectbutton",
+        "toggleable"
     ],
     "css.fileExtensions": ["html", "css"],
     "css.classNameCompletion.enabled": true,

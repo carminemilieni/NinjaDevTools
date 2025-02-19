@@ -1,3 +1,4 @@
+import { ValidationConstraints } from './../qr-config.form';
 import { Component, computed, inject, Signal } from '@angular/core';
 import { Card } from 'primeng/card';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -14,6 +15,7 @@ import { FileUpload, FileUploadHandlerEvent } from 'primeng/fileupload';
 import { NGXLogger } from 'ngx-logger';
 import { Button } from 'primeng/button';
 import { DotOptionsFormComponent } from './';
+import { CommonModule } from '@angular/common';
 
 /**
  * @description
@@ -31,11 +33,13 @@ import { DotOptionsFormComponent } from './';
     FileUpload,
     Button,
     DotOptionsFormComponent,
+    CommonModule,
   ],
   templateUrl: './config-form.component.html',
 })
 export class ConfigFormComponent {
   protected readonly i18nPrefix = 'pages.qr-code.form';
+  protected readonly ValidationConstraints = ValidationConstraints;
   readonly #store = inject(QrCodeStore);
   readonly formGroup: TQrConfigFormGroup;
   readonly #updateStateEffect: Signal<any>;

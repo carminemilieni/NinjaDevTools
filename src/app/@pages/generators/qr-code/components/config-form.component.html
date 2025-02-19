@@ -2,7 +2,15 @@
   <p-card>
     <div class="grid gap-5">
       <p-floatlabel variant="on">
-        <p-input-number formControlName="width" inputId="width" id="width" showButtons class="w-full" />
+        <p-input-number
+          formControlName="width"
+          inputId="width"
+          id="width"
+          showButtons
+          class="w-full"
+          [min]="ValidationConstraints.WidthMin"
+          [max]="ValidationConstraints.WidthMax"
+        />
         <label for="width">
           {{ i18nPrefix + '.widthLabel' | translate }}
         </label>
@@ -12,7 +20,15 @@
         <label for="data">{{ i18nPrefix + '.dataLabel' | translate }}</label>
       </p-floatlabel>
       <p-floatlabel variant="on">
-        <p-input-number formControlName="margin" inputId="margin" id="margin" showButtons class="w-full" />
+        <p-input-number
+          formControlName="margin"
+          inputId="margin"
+          id="margin"
+          showButtons
+          class="w-full"
+          [min]="ValidationConstraints.MarginMin"
+          [max]="ValidationConstraints.MarginMax"
+        />
         <label for="margin">
           {{ i18nPrefix + '.marginLabel' | translate }}
         </label>
@@ -34,7 +50,7 @@
         @if (viewRemoveUpload()) {
           <p-button
             (click)="onRemoveImage()"
-            icon="pi pi-tash"
+            icon="pi pi-trash"
             [label]="i18nPrefix + '.removeImageLabel' | translate"
           />
         }

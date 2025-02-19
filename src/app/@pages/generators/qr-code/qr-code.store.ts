@@ -26,10 +26,6 @@ const initialState: IQRCodeState = {
             offset: 0,
             color: '#000000',
           },
-          {
-            offset: 1,
-            color: '#DDDDDD',
-          },
         ],
       },
     },
