@@ -1,6 +1,5 @@
 import { ValidationConstraints } from './../qr-config.form';
 import { Component, computed, inject, Signal } from '@angular/core';
-import { Card } from 'primeng/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import QrConfigForm from '@pages/generators/qr-code/qr-config.form';
 import { InputNumber } from 'primeng/inputnumber';
@@ -28,7 +27,6 @@ import { PanelModule } from 'primeng/panel';
 @Component({
   selector: 'app-config-form',
   imports: [
-    Card,
     ReactiveFormsModule,
     InputNumber,
     FloatLabel,
@@ -48,7 +46,9 @@ import { PanelModule } from 'primeng/panel';
 export class ConfigFormComponent {
   protected readonly i18nPrefix = 'pages.qr-code.form';
   protected readonly ValidationConstraints = ValidationConstraints;
+
   readonly #store = inject(QrCodeStore);
+  protected readonly collapsed = this.#store.pageState.panelCollapsed.mainOptions;
   readonly formGroup: TQrConfigFormGroup;
   readonly #updateStateEffect: Signal<any>;
   readonly #handlers: Signal<any>[] = [];
@@ -76,5 +76,10 @@ export class ConfigFormComponent {
 
   onRemoveImage() {
     this.formGroup.controls.image.setValue(undefined);
+  }
+
+  setCollapsed(value: boolean) {
+    this.#logger.trace('setCollapsed', value);
+    this.#store.setCollapsed('mainOptions', value);
   }
 }

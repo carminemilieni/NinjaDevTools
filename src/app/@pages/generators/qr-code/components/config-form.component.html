@@ -1,6 +1,11 @@
 <form [formGroup]="formGroup">
   <div class="mb-5">
-    <p-panel [header]="i18nPrefix + '.title' | translate" [toggleable]="true" [collapsed]="true">
+    <p-panel
+      [header]="i18nPrefix + '.title' | translate"
+      [toggleable]="true"
+      [collapsed]="collapsed"
+      (collapsedChange)="setCollapsed($event)"
+    >
       <div class="grid gap-5">
         <p-floatlabel variant="on">
           <p-input-number

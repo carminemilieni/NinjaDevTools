@@ -1,11 +1,12 @@
 import { PartialStateUpdater, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
 import { updateState } from '@angular-architects/ngrx-toolkit';
-import { withLogger } from '@shared/features';
-import { TQrConfigFormValues } from '@pages/generators/qr-code/qr-code.type';
+import { withLogger, withStoragePrefix } from '@shared/features';
+import { IQrPageState, TQrConfigFormValues } from '@pages/generators/qr-code/qr-code.type';
 import { computed } from '@angular/core';
 
 interface IQRCodeState {
   config: TQrConfigFormValues;
+  pageState: IQrPageState;
 }
 
 const initialState: IQRCodeState = {
@@ -72,6 +73,15 @@ const initialState: IQRCodeState = {
       },
     },
   },
+  pageState: {
+    panelCollapsed: {
+      mainOptions: true,
+      dotsOptions: false,
+      cornersSquareOptions: false,
+      cornersDotOptions: false,
+      backgroundOptions: false,
+    },
+  },
 };
 
 const storeKey = 'qrCode';
@@ -83,8 +93,11 @@ const storeKey = 'qrCode';
 export const QrCodeStore = signalStore(
   withState(initialState),
   withLogger(storeKey),
+  withStoragePrefix(storeKey),
   withMethods((store) => ({
-    patchValues: (values: TQrConfigFormValues) => updateState(store, `${storeKey}`, updateConfig(values)),
+    patchValues: (values: TQrConfigFormValues) => updateState(store, `${storeKey} patchValues`, updateConfig(values)),
+    setCollapsed: (key: keyof IQrPageState['panelCollapsed'], value: boolean) =>
+      updateState(store, `${storeKey} setCollapsed`, updatePanelCollapsed(key, value)),
   })),
   withComputed(({ config }) => ({
     renderConfig: computed(
@@ -102,6 +115,21 @@ function updateConfig(values: TQrConfigFormValues): PartialStateUpdater<IQRCodeS
   return () => ({
     config: {
       ...values,
+    },
+  });
+}
+
+function updatePanelCollapsed(
+  key: keyof IQrPageState['panelCollapsed'],
+  value: boolean
+): PartialStateUpdater<IQRCodeState> {
+  return (state) => ({
+    pageState: {
+      ...state.pageState,
+      panelCollapsed: {
+        ...state.pageState.panelCollapsed,
+        [key]: value,
+      },
     },
   });
 }

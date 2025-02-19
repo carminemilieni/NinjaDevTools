@@ -114,3 +114,13 @@ export interface IQrColorStopFormControls {
 
 export type TQRColorStopFormGroup = FormGroup<IQrColorStopFormControls>;
 export type TQRColorStopFormValues = TQRColorStopFormGroup['value'] & Gradient['colorStops'][0];
+
+export interface IQrPageState {
+  panelCollapsed: {
+    mainOptions: boolean;
+    dotsOptions: boolean;
+    cornersSquareOptions: boolean;
+    cornersDotOptions: boolean;
+    backgroundOptions: boolean;
+  };
+}
