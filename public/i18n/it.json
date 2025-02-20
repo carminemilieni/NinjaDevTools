@@ -5,6 +5,9 @@
     },
     "language-switch": {
       "placeholder": "Seleziona lingua"
+    },
+    "json-viewer-wrapper": {
+      "download": "Scarica"
     }
   },
   "pages": {
@@ -25,6 +28,9 @@
         "dotOptions": {
           "title": "Punti",
           "typeLabel": "Tipo"
+        },
+        "jsonConfig": {
+          "title": "Configurazione JSON"
         },
         "gradient": {
           "addColorLabel": "Aggiungi colore",
