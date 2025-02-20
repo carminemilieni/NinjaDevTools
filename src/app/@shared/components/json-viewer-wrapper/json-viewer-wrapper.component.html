@@ -1,0 +1,8 @@
+<div class="bg-white p-3 rounded max-h-[400px] overflow-auto border border-gray-200">
+  <ngx-json-viewer [json]="json()" [expanded]="expanded()" />
+</div>
+@if (isDownloadable()) {
+  <div class="mt-2 text-right">
+    <p-button [label]="downloadLabel | translate" icon="pi pi-download" size="small" (onClick)="onDownload()" />
+  </div>
+}
