@@ -19,6 +19,7 @@ import { CornersSquareOptionsFormComponent } from './corners-square-options-form
 import { CornersDotOptionsFormComponent } from './corners-dot-options-form.component';
 import { BackgroundOptionsFormComponent } from './background-options-form.component';
 import { PanelModule } from 'primeng/panel';
+import { JsonConfigComponent } from './json-config.component';
 
 /**
  * @description
@@ -40,6 +41,7 @@ import { PanelModule } from 'primeng/panel';
     CornersDotOptionsFormComponent,
     BackgroundOptionsFormComponent,
     PanelModule,
+    JsonConfigComponent,
   ],
   templateUrl: './config-form.component.html',
 })

@@ -122,5 +122,6 @@ export interface IQrPageState {
     cornersSquareOptions: boolean;
     cornersDotOptions: boolean;
     backgroundOptions: boolean;
+    jsonConfig: boolean;
   };
 }

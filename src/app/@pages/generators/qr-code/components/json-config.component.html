@@ -1,0 +1,10 @@
+<p-panel
+  [header]="i18nPrefix + '.title' | translate"
+  [toggleable]="true"
+  [collapsed]="collapsed()"
+  (collapsedChange)="setCollapsed($event)"
+>
+  <div class="py-3">
+    <app-json-viewer-wrapper [json]="json()" prefixFileName="qr-code" />
+  </div>
+</p-panel>

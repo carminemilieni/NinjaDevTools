@@ -80,6 +80,7 @@ const initialState: IQRCodeState = {
       cornersSquareOptions: true,
       cornersDotOptions: true,
       backgroundOptions: true,
+      jsonConfig: true,
     },
   },
 };

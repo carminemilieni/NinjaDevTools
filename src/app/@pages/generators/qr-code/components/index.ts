@@ -5,3 +5,4 @@ export * from './corners-dot-options-form.component';
 export * from './corners-square-options-form.component';
 export * from './render-window.component';
 export * from './background-options-form.component';
+export * from './json-config.component';
